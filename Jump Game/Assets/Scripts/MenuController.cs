@@ -18,7 +18,7 @@ public class MenuController : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(GameConfig.GAME_SCENE);
     }
     public void Shop()
     {

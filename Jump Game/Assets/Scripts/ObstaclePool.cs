@@ -6,11 +6,14 @@ public class ObstaclePool : MonoBehaviour
 {
     [SerializeField] private List<Obstacle> _obstacleList;
     [SerializeField] private Obstacle _obstaclePrefab;
-    [SerializeField] private int _poolSize = 5;
-
-    private void Start()
+    [SerializeField] private int _poolSize = 10;
+    private void Awake()
     {
-        _obstacleList = new List<Obstacle>();
+        Init();
+    }
+    private void Init()
+    {
+        _obstacleList = new List<Obstacle>(0);
         Vector2 spawnPosition = transform.position;
         for (int i = 0; i < _poolSize; i++)
         {
@@ -19,13 +22,20 @@ public class ObstaclePool : MonoBehaviour
             obstacle.gameObject.SetActive(false);
             spawnPosition -= new Vector2(Random.Range(-1f, 1f), 3);
         }
-        ShowPool();
     }
-    private void ShowPool()
+    public Obstacle GetObstacle()
     {
+        if (_obstacleList == null) Init();
         foreach (var obstacle in _obstacleList)
         {
-            obstacle.gameObject.SetActive(true);
+            if (!obstacle.gameObject.activeInHierarchy)
+            {
+                return obstacle;
+            }
         }
+        Obstacle newObstacle = Instantiate(_obstaclePrefab);
+        _obstacleList.Add(newObstacle);
+        newObstacle.gameObject.SetActive(false);
+        return newObstacle;
     }
 }
