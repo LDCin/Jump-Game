@@ -7,6 +7,7 @@ public class ObstaclePool : MonoBehaviour
     [SerializeField] private List<Obstacle> _obstacleList;
     [SerializeField] private Obstacle _obstaclePrefab;
     [SerializeField] private int _poolSize = 10;
+    [SerializeField] private int _obstacleIsActive = 0;
     private void Awake()
     {
         Init();
@@ -14,13 +15,11 @@ public class ObstaclePool : MonoBehaviour
     private void Init()
     {
         _obstacleList = new List<Obstacle>(0);
-        Vector2 spawnPosition = transform.position;
         for (int i = 0; i < _poolSize; i++)
         {
-            Obstacle obstacle = Instantiate(_obstaclePrefab, spawnPosition, Quaternion.identity);
+            Obstacle obstacle = Instantiate(_obstaclePrefab);
             _obstacleList.Add(obstacle);
             obstacle.gameObject.SetActive(false);
-            spawnPosition -= new Vector2(Random.Range(-1f, 1f), 3);
         }
     }
     public Obstacle GetObstacle()
@@ -37,5 +36,21 @@ public class ObstaclePool : MonoBehaviour
         _obstacleList.Add(newObstacle);
         newObstacle.gameObject.SetActive(false);
         return newObstacle;
+    }
+    public int GetNumberOfObstacleIsActive()
+    {
+        int count = 0;
+        foreach (var obstacle in _obstacleList)
+        {
+            if (obstacle.gameObject.activeInHierarchy)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+    public void SetObstacleIsActive(int newCount)
+    {
+        _obstacleIsActive = newCount;
     }
 }
