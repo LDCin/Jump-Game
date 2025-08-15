@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        _scoreController.UpdateHighScore();
         Time.timeScale = 0;
     }
 }

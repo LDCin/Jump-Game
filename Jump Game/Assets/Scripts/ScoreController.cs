@@ -12,11 +12,16 @@ public class ScoreController : MonoBehaviour
         _score = 0;
         _scoreText.text = _score.ToString();
     }
-    
     public void GainPoint()
     {
         _score++;
         _scoreText.text = _score.ToString();
     }
-    
+    public void UpdateHighScore()
+    {
+        if (_score > GameConfig.HIGH_SCORE)
+        {
+            PlayerPrefs.SetInt("HighScore", _score);
+        }
+    }
 }
