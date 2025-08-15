@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8704722818391060445
+--- !u!1 &8945102913484807728
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 969584103226032438}
-  - component: {fileID: 5180177276782637487}
+  - component: {fileID: 6451111250875433309}
+  - component: {fileID: 3867789937973464495}
   m_Layer: 0
-  m_Name: ObstaclePool
+  m_Name: ObstacleSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &969584103226032438
+--- !u!4 &6451111250875433309
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704722818391060445}
+  m_GameObject: {fileID: 8945102913484807728}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.52, z: 0}
+  m_LocalPosition: {x: 0, y: 4.406834, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5180177276782637487
+--- !u!114 &3867789937973464495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704722818391060445}
+  m_GameObject: {fileID: 8945102913484807728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0996cc33ae19aae49b0c1694d59e1d16, type: 3}
+  m_Script: {fileID: 11500000, guid: dd35fbb41ab38414ea84599909bf9174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obstacleList: []
-  _obstaclePrefab: {fileID: 7245468242215148026, guid: f0eec620fae1a0447b61762a7b549b07, type: 3}
-  _poolSize: 7
-  _obstacleIsActive: 0
+  _obstaclePool: {fileID: 5180177276782637487, guid: c0ad92654fe20f94e8db35428e5b129b, type: 3}
+  _existNumber: 5
+  _spawnDistance: 3

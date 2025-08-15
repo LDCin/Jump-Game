@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Wall
+  - DeadZone
   layers:
   - Default
   - TransparentFX
@@ -42,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3699664581
     locked: 0
   - name: Obstacle
     uniqueID: 3260098821

@@ -31,12 +31,18 @@ public class CameraController : MonoBehaviour
     }
     private void MoveToTarget()
     {
-        Vector2 pos = transform.position;
+        Vector3 pos = transform.position;
         pos.y = Mathf.MoveTowards(pos.y, _target, _moveSpeed * Time.deltaTime);
         transform.position = pos;
         if (Mathf.Abs(pos.y - _target) < 0.01f)
         {
             _canMove = false;
+            UpdateCamBound();
         }
+    }
+    private void UpdateCamBound()
+    {
+        GameConfig.camPosition = transform.position;
+        GameConfig.topCam = GameConfig.camPosition.y + GameConfig.halfHeight;
     }
 }

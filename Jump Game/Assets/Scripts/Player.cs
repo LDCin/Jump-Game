@@ -12,11 +12,16 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
     }
+    // private void Update()
+    // {
+    //     Vector3 pos = transform.position;
+    //     pos.x = Mathf.Clamp(pos.x, GameConfig.leftCam, GameConfig.rightCam);
+    // }
     private void FixedUpdate()
     {
         if (Input.touchCount == 1 && !_isFalling)
         {
-            _obstacle.disableColliderObstacle();
+            _obstacle.DisableColliderObstacle();
             Jump();
             Debug.Log("Touch Screen!");
         }
@@ -34,11 +39,16 @@ public class Player : MonoBehaviour
             _obstacle = collision.gameObject.GetComponent<Obstacle>();
             gameObject.transform.parent = _obstacle.transform;
             _isFalling = false;
-            if (gameObject.transform.parent != null)
-            {
-                Debug.Log("Set Parent Successfully!");
-            }
+            GameManager._instance.SpawnAfterJump();
+            GameManager._instance.GainScore();
             CameraController._instance.ChangeTargetTo(transform.position.y);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(GameConfig.DEAD_ZONE_TAG))
+        {
+            GameManager._instance.GameOver();
         }
     }
 }
