@@ -24,8 +24,8 @@ public static class GameConfig
     public static float topCam = camPosition.y + halfHeight;
     public static float botCam = camPosition.y - halfHeight;
 
-    // Spawner
-    public static List<Vector2> spawnList;
+    // Score
+    public static int HIGH_SCORE = PlayerPrefs.GetInt("HighScore", 0);
 
 
 }
