@@ -6,14 +6,18 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private int _existCount = 2;
     [SerializeField] private float _moveSpeed = 1.0f;
+    private int _currentExistCount;
     private Collider2D _col;
     private Vector2 _dir;
     private bool _hasPlayer = false;
+    private Vector3 _colSize;
 
     private void Awake()
     {
         _col = GetComponent<Collider2D>();
         EnableColliderObstacle();
+        _currentExistCount = _existCount;
+        _colSize = _col.bounds.size;
     }
     private void OnEnable()
     {
@@ -22,6 +26,7 @@ public class Obstacle : MonoBehaviour
             _dir = Vector2.right;
         }
         else _dir = Vector2.left;
+        _hasPlayer = false;
     }
 
     private void Update()
@@ -39,10 +44,10 @@ public class Obstacle : MonoBehaviour
     }
     private void ChangeDirection()
     {
-        if (_col.bounds.min.x <= GameConfig.leftCam || _col.bounds.max.x >= GameConfig.rightCam)
+        if (transform.position.x - _colSize.x / 2 <= GameConfig.leftCam || transform.position.x + _colSize.x / 2 >= GameConfig.rightCam)
         {
-            if (_hasPlayer) _existCount--;
-            if (_existCount <= 0)
+            if (_hasPlayer) _currentExistCount--;
+            if (_currentExistCount <= 0)
             {
                 BreakObstacle();
                 return;
@@ -56,7 +61,8 @@ public class Obstacle : MonoBehaviour
         {
             _hasPlayer = false;
             EnableColliderObstacle();
-            BreakObstacle();
+            _currentExistCount = _existCount;
+            // BreakObstacle();
         }
     }
     public void DisableColliderObstacle()

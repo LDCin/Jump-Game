@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        Time.timeScale = 1;
     }
     public void SpawnAfterJump()
     {
@@ -22,7 +24,21 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        _scoreController.UpdateHighScore();
+        OpenGameOverPanel();
         Time.timeScale = 0;
+    }
+    // Demo
+    public void OpenGameOverPanel()
+    {
+        _gameOverPanel.SetActive(true);
+    }
+    [SerializeField] private GameObject _gameOverPanel;
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(GameConfig.GAME_SCENE);
+    }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(GameConfig.MENU_SCENE);
     }
 }

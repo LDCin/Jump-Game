@@ -17,9 +17,10 @@ public class Player : MonoBehaviour
     //     Vector3 pos = transform.position;
     //     pos.x = Mathf.Clamp(pos.x, GameConfig.leftCam, GameConfig.rightCam);
     // }
-    private void FixedUpdate()
+    private void Update()
     {
-        if (Input.touchCount == 1 && !_isFalling)
+        ChangeState();
+        if (Input.touchCount == 1 && !_isFalling & _obstacle != null)
         {
             _obstacle.DisableColliderObstacle();
             Jump();
@@ -30,7 +31,14 @@ public class Player : MonoBehaviour
     {
         gameObject.transform.parent = null;
         _rb.velocity = Vector2.up * _jumpForce;
-        _isFalling = true;
+    }
+    private void ChangeState()
+    {
+        if (gameObject.transform.parent != null)
+        {
+            _isFalling = false;
+        }
+        else _isFalling = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

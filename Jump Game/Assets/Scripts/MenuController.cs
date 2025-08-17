@@ -42,8 +42,4 @@ public class MenuController : MonoBehaviour
         _settingPanel.SetActive(false);
         _noAdsPanel.SetActive(false);
     }
-    public void ShowHighScore()
-    {
-        
-    }
 }

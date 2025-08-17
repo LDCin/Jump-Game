@@ -16,6 +16,7 @@ public static class GameConfig
 
     // Camera
     public static Camera cam = Camera.main;
+    public static Vector3 startCamPosition = cam.transform.position;
     public static Vector3 camPosition = cam.transform.position;
     public static float halfHeight = cam.orthographicSize;
     public static float halfWidth = cam.aspect * halfHeight;
@@ -27,5 +28,9 @@ public static class GameConfig
     // Score
     public static int HIGH_SCORE = PlayerPrefs.GetInt("HighScore", 0);
 
+    // PATH
+    public static string PANEL_PATH = "UI\\Panel\\";
 
 }
+
+

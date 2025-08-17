@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PanelManager : MonoBehaviour
 {
+    public static PanelManager _instance;
+
     Dictionary<string, Panel> _panelList;
+    [SerializeField] private GameObject _gameOverPanel;
 
     private void Start()
     {
+        _instance = this;
         InitPanelList();
         // Open(GetPanel())
     }
@@ -39,4 +43,5 @@ public class PanelManager : MonoBehaviour
     {
         _panelList[panelName].ClosePanel();
     }
+    
 }

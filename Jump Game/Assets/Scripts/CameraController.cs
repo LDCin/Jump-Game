@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour
         if (_canMove)
         {
             MoveToTarget();
+            UpdateCamBound();
         }
     }
     public void ChangeTargetTo(float y)
@@ -37,7 +38,6 @@ public class CameraController : MonoBehaviour
         if (Mathf.Abs(pos.y - _target) < 0.01f)
         {
             _canMove = false;
-            UpdateCamBound();
         }
     }
     private void UpdateCamBound()
