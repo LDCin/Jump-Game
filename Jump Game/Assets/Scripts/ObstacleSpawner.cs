@@ -9,16 +9,27 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private float _spawnDistance = 3f;
     private Vector2 _lastSpawnPos;
     private float _distanceOffset = 0;
-    private void Start()
+    private void Awake()
     {
         _lastSpawnPos.y = GameConfig.topCam - _spawnDistance;
         _lastSpawnPos.x = 0;
-        _obstaclePool.SetObstacleIsActive(_existNumber);
+        // _obstaclePool.SetObstacleIsActive(_existNumber);
+        _obstaclePool.ResetPool();
         for (int i = 0; i < _existNumber; i++)
         {
             SpawnObstacle();
         }
     }
+    // private void Start()
+    // {
+    //     _lastSpawnPos.y = GameConfig.topCam - _spawnDistance;
+    //     _lastSpawnPos.x = 0;
+    //     _obstaclePool.SetObstacleIsActive(_existNumber);
+    //     for (int i = 0; i < _existNumber; i++)
+    //     {
+    //         SpawnObstacle();
+    //     }
+    // }
     public void SpawnObstacle()
     {
         Obstacle obstacle = _obstaclePool.GetObstacle();

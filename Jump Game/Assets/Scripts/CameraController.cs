@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
         if (_canMove)
         {
             MoveToTarget();
-            UpdateCamBound();
+            // UpdateCamBound();
         }
     }
     public void ChangeTargetTo(float y)
@@ -40,9 +40,9 @@ public class CameraController : MonoBehaviour
             _canMove = false;
         }
     }
-    private void UpdateCamBound()
-    {
-        GameConfig.camPosition = transform.position;
-        GameConfig.topCam = GameConfig.camPosition.y + GameConfig.halfHeight;
-    }
+    // private void UpdateCamBound()
+    // {
+    //     GameConfig.camPosition = transform.position;
+    //     GameConfig.topCam = GameConfig.camPosition.y + GameConfig.halfHeight;
+    // }
 }

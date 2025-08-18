@@ -7,7 +7,7 @@ public class ObstaclePool : MonoBehaviour
     [SerializeField] private List<Obstacle> _obstacleList;
     [SerializeField] private Obstacle _obstaclePrefab;
     [SerializeField] private int _poolSize = 10;
-    [SerializeField] private int _obstacleIsActive = 0;
+    // [SerializeField] private int _obstacleIsActive = 0;
     private void Awake()
     {
         Init();
@@ -49,8 +49,15 @@ public class ObstaclePool : MonoBehaviour
         }
         return count;
     }
-    public void SetObstacleIsActive(int newCount)
+    // public void SetObstacleIsActive(int newCount)
+    // {
+    //     _obstacleIsActive = newCount;
+    // }
+    public void ResetPool()
     {
-        _obstacleIsActive = newCount;
+        foreach (var obstacle in _obstacleList)
+        {
+            obstacle.gameObject.SetActive(false);
+        }
     }
 }

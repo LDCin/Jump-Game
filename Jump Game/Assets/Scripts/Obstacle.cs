@@ -57,7 +57,7 @@ public class Obstacle : MonoBehaviour
     }
     private void ReturnToPool()
     {
-        if (_col.transform.position.y >= GameConfig.topCam)
+        if (transform.position.y >= GameConfig.topCam)
         {
             _hasPlayer = false;
             EnableColliderObstacle();

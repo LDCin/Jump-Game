@@ -15,15 +15,15 @@ public static class GameConfig
 
 
     // Camera
-    public static Camera cam = Camera.main;
-    public static Vector3 startCamPosition = cam.transform.position;
-    public static Vector3 camPosition = cam.transform.position;
-    public static float halfHeight = cam.orthographicSize;
-    public static float halfWidth = cam.aspect * halfHeight;
-    public static float leftCam = camPosition.x - halfWidth;
-    public static float rightCam = camPosition.x + halfWidth;
-    public static float topCam = camPosition.y + halfHeight;
-    public static float botCam = camPosition.y - halfHeight;
+    public static Camera cam => Camera.main;
+    public static Vector3 startCamPosition => cam.transform.position;
+    public static Vector3 camPosition => cam.transform.position;
+    public static float halfHeight => cam.orthographicSize;
+    public static float halfWidth => cam.aspect * halfHeight;
+    public static float leftCam => camPosition.x - halfWidth;
+    public static float rightCam => camPosition.x + halfWidth;
+    public static float topCam => camPosition.y + halfHeight;
+    public static float botCam => camPosition.y - halfHeight;
 
     // Score
     public static int HIGH_SCORE = PlayerPrefs.GetInt("HighScore", 0);
