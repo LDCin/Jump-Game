@@ -6,6 +6,8 @@ public class CameraController : MonoBehaviour
 {
     public static CameraController _instance;
     [SerializeField] private float _moveSpeed = 1.0f;
+    [SerializeField] public GameObject _leftCamBound;
+    [SerializeField] public GameObject _rightCamBound;
     private float _target;
     private Vector2 _pos;
     private bool _canMove = false;
@@ -13,6 +15,7 @@ public class CameraController : MonoBehaviour
     {
         _instance = this;
         _pos = transform.position;
+        InitCamBound();
     }
     private void Update()
     {
@@ -21,6 +24,11 @@ public class CameraController : MonoBehaviour
             MoveToTarget();
             // UpdateCamBound();
         }
+    }
+    private void InitCamBound()
+    {
+        _leftCamBound.transform.position = new Vector3(GameConfig.leftCam, transform.position.y, 0);
+        _rightCamBound.transform.position = new Vector3(GameConfig.rightCam, transform.position.y, 0);
     }
     public void ChangeTargetTo(float y)
     {

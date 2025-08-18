@@ -55,24 +55,6 @@ public class Obstacle : MonoBehaviour
             _dir = new Vector2(-_dir.x, _dir.y);
         }
     }
-    private void ReturnToPool()
-    {
-        if (transform.position.y >= GameConfig.topCam)
-        {
-            _hasPlayer = false;
-            EnableColliderObstacle();
-            _currentExistCount = _existCount;
-            // BreakObstacle();
-        }
-    }
-    public void DisableColliderObstacle()
-    {
-        _col.enabled = false;
-    }
-    public void EnableColliderObstacle()
-    {
-        _col.enabled = true;
-    }
     public void BreakObstacle()
     {
         if (transform.childCount > 0)
@@ -82,6 +64,25 @@ public class Obstacle : MonoBehaviour
         }
         gameObject.SetActive(false);
         Debug.Log("Break");
+    }
+    private void ReturnToPool()
+    {
+        if (transform.position.y >= GameConfig.topCam)
+        {
+            _hasPlayer = false;
+            EnableColliderObstacle();
+            _currentExistCount = _existCount;
+            BreakObstacle();
+            Debug.Log("Return To Pool!");
+        }
+    }
+    public void DisableColliderObstacle()
+    {
+        _col.enabled = false;
+    }
+    public void EnableColliderObstacle()
+    {
+        _col.enabled = true;
     }
     public Collider2D GetCollider2D()
     {
