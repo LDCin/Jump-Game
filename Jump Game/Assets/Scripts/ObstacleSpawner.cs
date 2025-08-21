@@ -34,6 +34,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         Obstacle obstacle = _obstaclePool.GetObstacle();
         obstacle.gameObject.SetActive(true);
+        obstacle.GetHasPlayer();
         if (_distanceOffset == 0) _distanceOffset = obstacle.GetCollider2D().bounds.size.x / 2;
         obstacle.gameObject.transform.position = _lastSpawnPos;
         _lastSpawnPos = new Vector2(Random.Range(GameConfig.leftCam + _distanceOffset, GameConfig.rightCam - _distanceOffset), _lastSpawnPos.y - _spawnDistance);

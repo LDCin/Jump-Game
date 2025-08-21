@@ -27,6 +27,11 @@ public class GameManager : MonoBehaviour
         OpenGameOverPanel();
         Time.timeScale = 0;
     }
+    public void PauseGame()
+    {
+
+        Time.timeScale = 0f;
+    }
     // Demo
     public void OpenGameOverPanel()
     {

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        GameConfig.camPositionMovement = transform.position.y;
     }
     // private void Update()
     // {

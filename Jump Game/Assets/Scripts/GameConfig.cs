@@ -24,6 +24,7 @@ public static class GameConfig
     public static float rightCam => camPosition.x + halfWidth;
     public static float topCam => camPosition.y + halfHeight;
     public static float botCam => camPosition.y - halfHeight;
+    public static float camPositionMovement;
 
     // Score
     public static int HIGH_SCORE = PlayerPrefs.GetInt("HighScore", 0);

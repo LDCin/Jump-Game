@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -8,14 +9,22 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 1.0f;
     [SerializeField] public GameObject _leftCamBound;
     [SerializeField] public GameObject _rightCamBound;
+    [SerializeField] public GameObject _deadZone;
     private float _target;
     private Vector2 _pos;
     private bool _canMove = false;
+    private BoxCollider2D _leftCamBoundBox;
+    private BoxCollider2D _rightCamBoundBox;
+    private BoxCollider2D _deadZoneBox;
     private void Awake()
     {
         _instance = this;
         _pos = transform.position;
-        InitCamBound();
+    }
+    private void Start()
+    {
+        InitBound();
+        UpdateCamBound();
     }
     private void Update()
     {
@@ -25,10 +34,23 @@ public class CameraController : MonoBehaviour
             // UpdateCamBound();
         }
     }
-    private void InitCamBound()
+    private void FixedUpdate()
     {
-        _leftCamBound.transform.position = new Vector3(GameConfig.leftCam, transform.position.y, 0);
-        _rightCamBound.transform.position = new Vector3(GameConfig.rightCam, transform.position.y, 0);
+        UpdateCamBound();
+    }
+    private void InitBound() {
+        _leftCamBoundBox = _leftCamBound.GetComponent<BoxCollider2D>();
+        _rightCamBoundBox = _rightCamBound.GetComponent<BoxCollider2D>();
+        _deadZoneBox = _deadZone.GetComponent<BoxCollider2D>();
+    }
+    private void UpdateCamBound()
+    {
+        _leftCamBoundBox.size = new Vector2(0.2f, GameConfig.halfHeight * 2);
+        _rightCamBoundBox.size = new Vector2(0.2f, GameConfig.halfHeight * 2);
+        _deadZoneBox.size = new Vector2(GameConfig.halfWidth * 2, 0.2f);
+        _leftCamBound.transform.position = new Vector3(GameConfig.leftCam, GameConfig.camPosition.y, 0);
+        _rightCamBound.transform.position = new Vector3(GameConfig.rightCam, GameConfig.camPosition.y, 0);
+        _deadZone.transform.position = new Vector3(GameConfig.camPosition.x, GameConfig.botCam, 0);
     }
     public void ChangeTargetTo(float y)
     {

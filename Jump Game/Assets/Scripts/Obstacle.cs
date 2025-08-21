@@ -62,6 +62,7 @@ public class Obstacle : MonoBehaviour
             Transform child = transform.GetChild(0);
             child.parent = null;
         }
+        _currentExistCount = _existCount;
         gameObject.SetActive(false);
         Debug.Log("Break");
     }
@@ -87,5 +88,10 @@ public class Obstacle : MonoBehaviour
     public Collider2D GetCollider2D()
     {
         return _col;
+    }
+    public void GetHasPlayer()
+    {
+        if (_hasPlayer) Debug.Log("True");
+        else Debug.Log("False");
     }
 }
