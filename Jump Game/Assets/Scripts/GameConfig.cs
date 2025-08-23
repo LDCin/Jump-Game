@@ -5,8 +5,6 @@ public static class GameConfig
 {
     // Scene
     public static string GAME_SCENE = "Game";
-    public static string MENU_SCENE = "Menu";
-
     // Tag
     public static string PLAYER_TAG = "Player";
     public static string WALL_TAG = "Wall";
@@ -28,10 +26,17 @@ public static class GameConfig
 
     // Score
     public static int HIGH_SCORE = PlayerPrefs.GetInt("HighScore", 0);
+    public static int SCORE = PlayerPrefs.GetInt("Score", 0);
 
     // PATH
-    public static string PANEL_PATH = "UI\\Panel\\";
-
+    public static string PANEL_PATH = "Prefabs/UI/";
+    public static string GAME_PANEL_PATH = "Game/";
+    public static string SCORE_PANEL = "Game/Panel-Score";
+    public static string GAME_OVER_PANEL = "Game/Panel-GameOver";
+    public static string PAUSE_PANEL = "Game/Panel-PauseGame";
+    public static string MENU_PANEL_PATH = "Menu/";
+    public static string MENU_PANEL = "Menu/Panel-Menu";
+    public static string SHOP_PANEL = "Menu/Panel-Shop";
+    public static string NOADS_PANEL = "Menu/Panel-NoAds";
+    public static string SETTING_PANEL = "Menu/Panel-Setting";
 }
-
-

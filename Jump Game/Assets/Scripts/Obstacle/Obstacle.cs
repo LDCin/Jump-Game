@@ -55,6 +55,12 @@ public class Obstacle : MonoBehaviour
             _dir = new Vector2(-_dir.x, _dir.y);
         }
     }
+    public void RestoreObstacle()
+    {
+        _hasPlayer = false;
+        _currentExistCount = _existCount;
+        EnableColliderObstacle();
+    }
     public void BreakObstacle()
     {
         if (transform.childCount > 0)
@@ -62,7 +68,7 @@ public class Obstacle : MonoBehaviour
             Transform child = transform.GetChild(0);
             child.parent = null;
         }
-        _currentExistCount = _existCount;
+        RestoreObstacle();
         gameObject.SetActive(false);
         Debug.Log("Break");
     }
@@ -70,9 +76,6 @@ public class Obstacle : MonoBehaviour
     {
         if (transform.position.y >= GameConfig.topCam)
         {
-            _hasPlayer = false;
-            EnableColliderObstacle();
-            _currentExistCount = _existCount;
             BreakObstacle();
             Debug.Log("Return To Pool!");
         }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ScoreController : MonoBehaviour
+public class ScorePanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText;
     private int _score = -1;
     private void Awake()
     {
-        _score = 0;
+        _score = -1;
         _scoreText.text = (_score + 1).ToString();
     }
     public void GainPoint()

@@ -7,12 +7,16 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private ObstacleSpawner _obstacleSpawner;
     [SerializeField] private GameObject _deadZone;
-    [SerializeField] private ScoreController _scoreController;
     public static GameManager _instance;
     private void Awake()
     {
         _instance = this;
-        Time.timeScale = 1;
+        Time.timeScale = 0;
+    }
+    private void Start()
+    {
+        PanelManager._instance.CloseAllPanel();
+        PanelManager._instance.OpenPanel(GameConfig.MENU_PANEL);
     }
     public void SpawnAfterJump()
     {
@@ -20,30 +24,20 @@ public class GameManager : MonoBehaviour
     }
     public void GainScore()
     {
-        _scoreController.GainPoint();
+        PlayerPrefs.SetInt("Score", GameConfig.SCORE);
     }
     public void GameOver()
     {
-        OpenGameOverPanel();
+        PanelManager._instance.OpenPanel(GameConfig.GAME_OVER_PANEL);
         Time.timeScale = 0;
     }
     public void PauseGame()
     {
-
+        PanelManager._instance.OpenPanel(GameConfig.PAUSE_PANEL);
         Time.timeScale = 0f;
     }
-    // Demo
-    public void OpenGameOverPanel()
-    {
-        _gameOverPanel.SetActive(true);
-    }
-    [SerializeField] private GameObject _gameOverPanel;
     public void RestartGame()
     {
         SceneManager.LoadScene(GameConfig.GAME_SCENE);
-    }
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene(GameConfig.MENU_SCENE);
     }
 }

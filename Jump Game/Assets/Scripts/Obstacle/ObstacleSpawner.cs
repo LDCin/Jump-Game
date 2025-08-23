@@ -13,7 +13,6 @@ public class ObstacleSpawner : MonoBehaviour
     {
         _lastSpawnPos.y = GameConfig.topCam - _spawnDistance;
         _lastSpawnPos.x = 0;
-        // _obstaclePool.SetObstacleIsActive(_existNumber);
         _obstaclePool.ResetPool();
         for (int i = 0; i < _existNumber; i++)
         {
