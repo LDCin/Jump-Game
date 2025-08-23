@@ -29,14 +29,14 @@ public static class GameConfig
     public static int SCORE = PlayerPrefs.GetInt("Score", 0);
 
     // PATH
-    public static string PANEL_PATH = "Prefabs/UI/";
+    public static string PANEL_PATH = "Prefabs/UI/Panels/";
     public static string GAME_PANEL_PATH = "Game/";
-    public static string SCORE_PANEL = "Game/Panel-Score";
-    public static string GAME_OVER_PANEL = "Game/Panel-GameOver";
-    public static string PAUSE_PANEL = "Game/Panel-PauseGame";
+    public static string SCORE_PANEL = "Panel-Score";
+    public static string GAME_OVER_PANEL = "Panel-GameOver";
+    public static string PAUSE_PANEL = "Panel-PauseGame";
     public static string MENU_PANEL_PATH = "Menu/";
-    public static string MENU_PANEL = "Menu/Panel-Menu";
-    public static string SHOP_PANEL = "Menu/Panel-Shop";
-    public static string NOADS_PANEL = "Menu/Panel-NoAds";
-    public static string SETTING_PANEL = "Menu/Panel-Setting";
+    public static string MENU_PANEL = "Panel-Menu";
+    public static string SHOP_PANEL = "Panel-Shop";
+    public static string NOADS_PANEL = "Panel-NoAds";
+    public static string SETTING_PANEL = "Panel-Setting";
 }

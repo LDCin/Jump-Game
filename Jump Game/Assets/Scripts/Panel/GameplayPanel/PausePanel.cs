@@ -6,14 +6,14 @@ public class PausePanel : Panel
 {
     public void Resume()
     {
-        PanelManager._instance.ClosePanel(GameConfig.PAUSE_PANEL);
+        PanelManager.Instance.ClosePanel(GameConfig.PAUSE_PANEL);
     }
     public void Setting()
     {
-        PanelManager._instance.OpenPanel(GameConfig.SETTING_PANEL);
+        PanelManager.Instance.OpenPanel(GameConfig.SETTING_PANEL);
     }
     public void BackToMenu()
     {
-        PanelManager._instance.OpenPanel(GameConfig.MENU_PANEL);
+        PanelManager.Instance.OpenPanel(GameConfig.MENU_PANEL);
     }
 }

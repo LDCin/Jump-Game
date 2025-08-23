@@ -48,8 +48,8 @@ public class Player : MonoBehaviour
             _obstacle = collision.gameObject.GetComponent<Obstacle>();
             gameObject.transform.parent = _obstacle.transform;
             _isFalling = false;
-            GameManager._instance.SpawnAfterJump();
-            GameManager._instance.GainScore();
+            GameManager.Instance.SpawnAfterJump();
+            GameManager.Instance.GainScore();
             CameraController._instance.ChangeTargetTo(transform.position.y);
         }
     }
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(GameConfig.DEAD_ZONE_TAG))
         {
-            GameManager._instance.GameOver();
+            GameManager.Instance.GameOver();
         }
     }
 }

@@ -1,15 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelManager : MonoBehaviour
+public class PanelManager : Singleton<PanelManager>
 {
-    public static PanelManager _instance;
     private Dictionary<string, Panel> panelList = new Dictionary<string, Panel>();
 
-    private void Awake()
+    public override void Awake()
     {
-        _instance = this;
+        base.Awake();
         var existPanels = GetComponentsInChildren<Panel>();
         foreach (var panel in existPanels)
         {
@@ -24,16 +24,27 @@ public class PanelManager : MonoBehaviour
     {
         if (IsAvailable(namePanel))
         {
+            Debug.Log(namePanel + " is available");
             return panelList[namePanel];
         }
 
-        Panel panel = Resources.Load<Panel>(GameConfig.PANEL_PATH + namePanel);
-
+        Panel panel;
+        panel = Resources.Load<Panel>(GameConfig.PANEL_PATH + GameConfig.MENU_PANEL_PATH + namePanel);
+        if (panel == null)
+        {
+            panel = Resources.Load<Panel>(GameConfig.PANEL_PATH + GameConfig.GAME_PANEL_PATH + namePanel);
+        }
         Panel newPanel = Instantiate(panel, transform);
         newPanel.transform.SetAsLastSibling();
         newPanel.gameObject.SetActive(false);
+        
+        newPanel.SetPanelName(namePanel);
 
         panelList[namePanel] = newPanel;
+        foreach (String panel_ in panelList.Keys)
+        {
+            Debug.Log(panel_);
+        }
         return newPanel;
     }
     public void OpenPanel(string namePanel)

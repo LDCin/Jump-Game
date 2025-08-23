@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private ObstacleSpawner _obstacleSpawner;
-    [SerializeField] private GameObject _deadZone;
-    public static GameManager _instance;
-    private void Awake()
+    public override void Awake()
     {
-        _instance = this;
+        base.Awake();
         Time.timeScale = 0;
     }
     private void Start()
     {
-        PanelManager._instance.CloseAllPanel();
-        PanelManager._instance.OpenPanel(GameConfig.MENU_PANEL);
+        PanelManager.Instance.CloseAllPanel();
+        PanelManager.Instance.OpenPanel(GameConfig.MENU_PANEL);
     }
     public void SpawnAfterJump()
     {
@@ -28,13 +26,13 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        PanelManager._instance.OpenPanel(GameConfig.GAME_OVER_PANEL);
+        PanelManager.Instance.OpenPanel(GameConfig.GAME_OVER_PANEL);
         Time.timeScale = 0;
     }
     public void PauseGame()
     {
-        PanelManager._instance.OpenPanel(GameConfig.PAUSE_PANEL);
-        Time.timeScale = 0f;
+        PanelManager.Instance.OpenPanel(GameConfig.PAUSE_PANEL);
+        Time.timeScale = 0;
     }
     public void RestartGame()
     {
