@@ -11,6 +11,9 @@ public class ObstacleSpawner : MonoBehaviour
     private float _distanceOffset = 0;
     private void Awake()
     {
+        ObstaclePool obstaclePool = Resources.Load<ObstaclePool>(GameConfig.OBSTACLE_PATH + GameConfig.OBSTACLE_POOL);
+        ObstaclePool newObstaclePool = Instantiate(obstaclePool, transform);
+        _obstaclePool = newObstaclePool;
         _lastSpawnPos.y = GameConfig.topCam - _spawnDistance;
         _lastSpawnPos.x = 0;
         _obstaclePool.ResetPool();
@@ -19,16 +22,6 @@ public class ObstacleSpawner : MonoBehaviour
             SpawnObstacle();
         }
     }
-    // private void Start()
-    // {
-    //     _lastSpawnPos.y = GameConfig.topCam - _spawnDistance;
-    //     _lastSpawnPos.x = 0;
-    //     _obstaclePool.SetObstacleIsActive(_existNumber);
-    //     for (int i = 0; i < _existNumber; i++)
-    //     {
-    //         SpawnObstacle();
-    //     }
-    // }
     public void SpawnObstacle()
     {
         Obstacle obstacle = _obstaclePool.GetObstacle();

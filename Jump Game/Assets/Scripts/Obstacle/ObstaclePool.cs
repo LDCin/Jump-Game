@@ -14,6 +14,7 @@ public class ObstaclePool : MonoBehaviour
     private void Init()
     {
         _obstacleList = new List<Obstacle>(0);
+        _obstaclePrefab = Resources.Load<Obstacle>(GameConfig.OBSTACLE_PATH + GameConfig.OBSTACLE);
         for (int i = 0; i < _poolSize; i++)
         {
             Obstacle obstacle = Instantiate(_obstaclePrefab);

@@ -8,6 +8,8 @@ public class MenuPanel : Panel
     public void StartGame()
     {
         SceneManager.LoadScene(GameConfig.GAME_SCENE);
+        PanelManager.Instance.CloseAllPanel();
+        GameManager.Instance.InitObstacleSpawner();
         Time.timeScale = 1;
     }
     public void Shop()

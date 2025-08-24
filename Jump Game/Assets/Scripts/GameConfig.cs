@@ -29,6 +29,7 @@ public static class GameConfig
     public static int SCORE = PlayerPrefs.GetInt("Score", 0);
 
     // PATH
+    // - PANEL
     public static string PANEL_PATH = "Prefabs/UI/Panels/";
     public static string GAME_PANEL_PATH = "Game/";
     public static string SCORE_PANEL = "Panel-Score";
@@ -39,4 +40,11 @@ public static class GameConfig
     public static string SHOP_PANEL = "Panel-Shop";
     public static string NOADS_PANEL = "Panel-NoAds";
     public static string SETTING_PANEL = "Panel-Setting";
+
+    // - OBSTACLE
+    public static string OBSTACLE_PATH = "Prefabs/Obstacle/";
+    public static string OBSTACLE_SPAWNER = "ObstacleSpawner";
+    public static string OBSTACLE_POOL = "ObstaclePool";
+    public static string OBSTACLE = "Obstacle";
+
 }

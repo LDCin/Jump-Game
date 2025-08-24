@@ -16,6 +16,12 @@ public class GameManager : Singleton<GameManager>
         PanelManager.Instance.CloseAllPanel();
         PanelManager.Instance.OpenPanel(GameConfig.MENU_PANEL);
     }
+    public void InitObstacleSpawner()
+    {
+        ObstacleSpawner obstacleSpawner = Resources.Load<ObstacleSpawner>(GameConfig.OBSTACLE_PATH + GameConfig.OBSTACLE_SPAWNER);
+        ObstacleSpawner newObstacleSpawner = Instantiate(obstacleSpawner, transform);
+        _obstacleSpawner = newObstacleSpawner;
+    }
     public void SpawnAfterJump()
     {
         _obstacleSpawner.SpawnObstacle();
