@@ -9,12 +9,8 @@ public class GameManager : Singleton<GameManager>
     public override void Awake()
     {
         base.Awake();
-        Time.timeScale = 0;
-    }
-    private void Start()
-    {
-        PanelManager.Instance.CloseAllPanel();
-        PanelManager.Instance.OpenPanel(GameConfig.MENU_PANEL);
+        InitObstacleSpawner();
+        Time.timeScale = 1;
     }
     public void InitObstacleSpawner()
     {
@@ -33,11 +29,6 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
         PanelManager.Instance.OpenPanel(GameConfig.GAME_OVER_PANEL);
-        Time.timeScale = 0;
-    }
-    public void PauseGame()
-    {
-        PanelManager.Instance.OpenPanel(GameConfig.PAUSE_PANEL);
         Time.timeScale = 0;
     }
     public void RestartGame()

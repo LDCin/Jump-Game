@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopPanel : Panel
+public class SettingPanel : Panel
 {
     public void BackToMenu()
     {

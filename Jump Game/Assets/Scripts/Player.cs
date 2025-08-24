@@ -13,15 +13,10 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         GameConfig.camPositionMovement = transform.position.y;
     }
-    // private void Update()
-    // {
-    //     Vector3 pos = transform.position;
-    //     pos.x = Mathf.Clamp(pos.x, GameConfig.leftCam, GameConfig.rightCam);
-    // }
     private void Update()
     {
         ChangeState();
-        if (Input.touchCount == 1 && !_isFalling & _obstacle != null)
+        if (Input.touchCount == 1 && !_isFalling && _obstacle != null)
         {
             _obstacle.DisableColliderObstacle();
             Jump();

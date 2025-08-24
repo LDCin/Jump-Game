@@ -9,12 +9,18 @@ public class PanelManager : Singleton<PanelManager>
 
     public override void Awake()
     {
+        // Time.timeScale = 0;
         base.Awake();
         var existPanels = GetComponentsInChildren<Panel>();
         foreach (var panel in existPanels)
         {
             panelList[panel.name] = panel;
         }
+    }
+    public void Start()
+    {
+        CloseAllPanel();
+        OpenPanel(GameConfig.MENU_PANEL);
     }
     private bool IsAvailable(string namePanel)
     {
@@ -33,6 +39,11 @@ public class PanelManager : Singleton<PanelManager>
         if (panel == null)
         {
             panel = Resources.Load<Panel>(GameConfig.PANEL_PATH + GameConfig.GAME_PANEL_PATH + namePanel);
+        }
+
+        if (panel == null)
+        {
+            Debug.Log("Not Found: " + namePanel);
         }
         Panel newPanel = Instantiate(panel, transform);
         newPanel.transform.SetAsLastSibling();

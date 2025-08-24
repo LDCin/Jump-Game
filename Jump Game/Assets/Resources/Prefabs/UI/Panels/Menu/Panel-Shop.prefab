@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3611973614197488768}
-  - component: {fileID: 8181826504291019965}
+  - component: {fileID: 7353092095672506863}
   - component: {fileID: 1222038184821944750}
   - component: {fileID: 1450305718677277797}
   m_Layer: 5
@@ -39,7 +39,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8181826504291019965
+--- !u!114 &7353092095672506863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2175042592567142680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 499137d12af41764eb8d40caa44c3b0b, type: 3}
+  m_Script: {fileID: 11500000, guid: bdb582f6709b47c5af6ebd36a9fe9fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnClose: 0
@@ -210,8 +210,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8181826504291019965}
-        m_TargetAssemblyTypeName: MenuPanel, Assembly-CSharp
+      - m_Target: {fileID: 7353092095672506863}
+        m_TargetAssemblyTypeName: ShopPanel, Assembly-CSharp
         m_MethodName: BackToMenu
         m_Mode: 1
         m_Arguments:

@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnClose: 0
+  _highScoreText: {fileID: 8265034794015728966}
 --- !u!222 &3911758587636261355
 CanvasRenderer:
   m_ObjectHideFlags: 0
