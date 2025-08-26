@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
             gameObject.transform.parent = _obstacle.transform;
             _isFalling = false;
             GameManager.Instance.SpawnAfterJump();
-            GameManager.Instance.GainScore();
+            GameManager.Instance.GainScore(1);
             CameraController._instance.ChangeTargetTo(transform.position.y);
         }
     }

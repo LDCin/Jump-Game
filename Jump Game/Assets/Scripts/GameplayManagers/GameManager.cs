@@ -22,9 +22,14 @@ public class GameManager : Singleton<GameManager>
     {
         _obstacleSpawner.SpawnObstacle();
     }
-    public void GainScore()
+    public void GainScore(int changedScore)
     {
-        PlayerPrefs.SetInt("Score", GameConfig.SCORE);
+        GameConfig.SetScore(changedScore);
+    }
+    public void PauseGame()
+    {
+        PanelManager.Instance.OpenPanel(GameConfig.PAUSE_PANEL);
+        Time.timeScale = 0;
     }
     public void GameOver()
     {

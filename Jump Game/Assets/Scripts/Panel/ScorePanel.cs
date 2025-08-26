@@ -6,16 +6,18 @@ using UnityEngine;
 public class ScorePanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText;
-    private int _score = -1;
+    private int _score = -2;
     private void Awake()
     {
         _score = -1;
         _scoreText.text = (_score + 1).ToString();
     }
-    public void GainPoint()
+    private void Update()
     {
-        _score++;
-        _scoreText.text = _score.ToString();
+        if (_score.ToString() != _scoreText.text)
+        {
+            _scoreText.text = _score.ToString();
+        }
     }
     public void UpdateHighScore()
     {

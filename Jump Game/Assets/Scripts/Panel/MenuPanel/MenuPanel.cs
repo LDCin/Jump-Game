@@ -9,6 +9,7 @@ public class MenuPanel : Panel
     [SerializeField] private TextMeshProUGUI _highScoreText;
     public void OnEnable()
     {
+        Time.timeScale = 0;
         UpdateHighScoreText();
     }
     public void StartGame()
@@ -16,8 +17,7 @@ public class MenuPanel : Panel
         Time.timeScale = 1;
         SceneManager.LoadScene(GameConfig.GAME_SCENE);
         PanelManager.Instance.ClosePanel(GameConfig.MENU_PANEL);
-        PanelManager.Instance.OpenPanel(GameConfig.PAUSE_PANEL);
-        // PanelManager.Instance.OpenPanel(GameConfig.SCORE_PANEL);
+        PanelManager.Instance.OpenPanel(GameConfig.SCORE_PANEL);
     }
     public void Shop()
     {

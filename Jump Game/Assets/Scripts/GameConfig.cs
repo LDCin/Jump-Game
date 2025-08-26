@@ -28,6 +28,10 @@ public static class GameConfig
     // Score
     public static int HIGH_SCORE = PlayerPrefs.GetInt("HighScore", 0);
     public static int SCORE = PlayerPrefs.GetInt("Score", 0);
+    public static void SetScore(int changedScore)
+    {
+        PlayerPrefs.SetInt("Score", SCORE + changedScore);
+    }
 
     // PATH
     // - PREFABS

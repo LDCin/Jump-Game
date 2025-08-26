@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PausePanel : Panel
 {
-    public void PauseGame()
-    {
-        PanelManager.Instance.OpenPanel(GameConfig.PAUSE_PANEL);
-        Time.timeScale = 0;
-    }
     public void Resume()
     {
         PanelManager.Instance.ClosePanel(GameConfig.PAUSE_PANEL);

@@ -6,7 +6,6 @@ using UnityEngine;
 public class PanelManager : Singleton<PanelManager>
 {
     private Dictionary<string, Panel> panelList = new Dictionary<string, Panel>();
-
     public override void Awake()
     {
         // Time.timeScale = 0;
