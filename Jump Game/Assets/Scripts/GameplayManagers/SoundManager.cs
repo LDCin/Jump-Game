@@ -30,4 +30,12 @@ public class SoundManager : Singleton<SoundManager>
     {
         _SFX.PlayOneShot(_clickSound);
     }
+    public void TurnOffSFX()
+    {
+        _SFX.mute = true;
+    }
+    public void TurnOnSFX()
+    {
+        _SFX.mute = false;
+    }
 }

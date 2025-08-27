@@ -31,7 +31,7 @@ public static class GameConfig
 
     public static int GET_HIGH_SCORE => PlayerPrefs.GetInt(HIGH_SCORE, 0);
     public static int GET_SCORE => PlayerPrefs.GetInt(SCORE, 0);
-    
+
     // PATH
     // - PREFABS
     public static string PREFABS_PATH = "Prefabs/";
@@ -62,4 +62,6 @@ public static class GameConfig
     public static AudioClip[] audioClipList = Resources.LoadAll<AudioClip>(AUDIO_PATH);
     public static AudioClip BGM_SOUND = Resources.Load<AudioClip>(AUDIO_PATH + BGM_PATH);
 
+    // CREDIT URL
+    public static string CREDIT_URL = "https://github.com/LDCin";
 }
