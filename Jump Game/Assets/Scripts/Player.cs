@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Obstacle _obstacle;
     private Rigidbody2D _rb;
     private bool _isFalling = false;
+    private bool _firstJump = true;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -16,11 +17,20 @@ public class Player : MonoBehaviour
     private void Update()
     {
         ChangeState();
-        if (Input.touchCount == 1 && !_isFalling && _obstacle != null)
+        if (Input.touchCount == 1)
         {
-            _obstacle.DisableColliderObstacle();
-            Jump();
-            Debug.Log("Touch Screen!");
+            if (_firstJump)
+            {
+                _obstacle.SetFirst(false);
+                _firstJump = false;
+                return;
+            }
+            else if (!_isFalling && _obstacle != null)
+            {
+                _obstacle.DisableColliderObstacle();
+                Jump();
+                Debug.Log("Touch Screen!");
+            }
         }
     }
     private void Jump()
@@ -44,7 +54,7 @@ public class Player : MonoBehaviour
             gameObject.transform.parent = _obstacle.transform;
             _isFalling = false;
             GameManager.Instance.SpawnAfterJump();
-            GameManager.Instance.GainScore(1);
+            if (!_firstJump) GameManager.Instance.GainScore(1);
             CameraController._instance.ChangeTargetTo(transform.position.y);
         }
     }

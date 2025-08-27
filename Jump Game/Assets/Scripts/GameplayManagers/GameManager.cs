@@ -12,6 +12,13 @@ public class GameManager : Singleton<GameManager>
         InitObstacleSpawner();
         Time.timeScale = 1;
     }
+    public void Start()
+    {
+        ScoreManager.Instance.SetScore(0);
+        ScoreManager.Instance.UpdateScore(0);
+        PanelManager.Instance.OpenPanel(GameConfig.DEFAULT_PANEL);
+        PanelManager.Instance.OpenPanel(GameConfig.SCORE_PANEL);
+    }
     public void InitObstacleSpawner()
     {
         ObstacleSpawner obstacleSpawner = Resources.Load<ObstacleSpawner>(GameConfig.OBSTACLE_PATH + GameConfig.OBSTACLE_SPAWNER);
@@ -22,14 +29,10 @@ public class GameManager : Singleton<GameManager>
     {
         _obstacleSpawner.SpawnObstacle();
     }
-    public void GainScore(int changedScore)
+    public void GainScore(int scoreDelta)
     {
-        GameConfig.SetScore(changedScore);
-    }
-    public void PauseGame()
-    {
-        PanelManager.Instance.OpenPanel(GameConfig.PAUSE_PANEL);
-        Time.timeScale = 0;
+        ScoreManager.Instance.UpdateScore(scoreDelta);
+        ScoreManager.Instance.UpdateHighScore();
     }
     public void GameOver()
     {
@@ -38,6 +41,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void RestartGame()
     {
+        SoundManager.Instance.PlayClickSound();
         SceneManager.LoadScene(GameConfig.GAME_SCENE);
     }
 }

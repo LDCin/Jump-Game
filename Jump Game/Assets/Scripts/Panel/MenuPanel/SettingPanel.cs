@@ -8,4 +8,5 @@ public class SettingPanel : Panel
     {
         Close();
     }
+    
 }

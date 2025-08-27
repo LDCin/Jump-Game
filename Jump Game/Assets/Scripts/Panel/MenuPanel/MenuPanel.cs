@@ -14,10 +14,10 @@ public class MenuPanel : Panel
     }
     public void StartGame()
     {
-        Time.timeScale = 1;
+        // Time.timeScale = 1;
+        SoundManager.Instance.PlayClickSound();
         SceneManager.LoadScene(GameConfig.GAME_SCENE);
         PanelManager.Instance.ClosePanel(GameConfig.MENU_PANEL);
-        PanelManager.Instance.OpenPanel(GameConfig.SCORE_PANEL);
     }
     public void Shop()
     {
@@ -33,6 +33,6 @@ public class MenuPanel : Panel
     }
     public void UpdateHighScoreText()
     {
-        _highScoreText.text = GameConfig.HIGH_SCORE.ToString();
+        _highScoreText.text = GameConfig.GET_HIGH_SCORE.ToString();
     }
 }

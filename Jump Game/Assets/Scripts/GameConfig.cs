@@ -26,13 +26,12 @@ public static class GameConfig
     public static float camPositionMovement;
 
     // Score
-    public static int HIGH_SCORE = PlayerPrefs.GetInt("HighScore", 0);
-    public static int SCORE = PlayerPrefs.GetInt("Score", 0);
-    public static void SetScore(int changedScore)
-    {
-        PlayerPrefs.SetInt("Score", SCORE + changedScore);
-    }
+    public static string HIGH_SCORE = "HighScore";
+    public static string SCORE = "Score";
 
+    public static int GET_HIGH_SCORE => PlayerPrefs.GetInt(HIGH_SCORE, 0);
+    public static int GET_SCORE => PlayerPrefs.GetInt(SCORE, 0);
+    
     // PATH
     // - PREFABS
     public static string PREFABS_PATH = "Prefabs/";
@@ -40,9 +39,10 @@ public static class GameConfig
     // - PANEL
     public static string PANEL_PATH = "Prefabs/UI/Panels/";
     public static string GAME_PANEL_PATH = "Game/";
-    public static string SCORE_PANEL = "Panel-Score";
+    public static string SCORE_PANEL = "Panel-ScoreGame";
     public static string GAME_OVER_PANEL = "Panel-GameOver";
     public static string PAUSE_PANEL = "Panel-PauseGame";
+    public static string DEFAULT_PANEL = "Panel-DefaultGame";
     public static string MENU_PANEL_PATH = "Menu/";
     public static string MENU_PANEL = "Panel-Menu";
     public static string SHOP_PANEL = "Panel-Shop";
@@ -54,5 +54,12 @@ public static class GameConfig
     public static string OBSTACLE_SPAWNER = "ObstacleSpawner";
     public static string OBSTACLE_POOL = "ObstaclePool";
     public static string OBSTACLE = "Obstacle";
+
+    // SOUND
+    public static string AUDIO_PATH = "Sounds/";
+    public static string BGM_PATH = "BGM";
+    public static string CLICK_SOUND = "ClickSound";
+    public static AudioClip[] audioClipList = Resources.LoadAll<AudioClip>(AUDIO_PATH);
+    public static AudioClip BGM_SOUND = Resources.Load<AudioClip>(AUDIO_PATH + BGM_PATH);
 
 }

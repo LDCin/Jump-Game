@@ -11,6 +11,7 @@ public class Obstacle : MonoBehaviour
     private Vector2 _dir;
     private bool _hasPlayer = false;
     private Vector3 _colSize;
+    private bool _isFirst = false;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class Obstacle : MonoBehaviour
         EnableColliderObstacle();
         _currentExistCount = _existCount;
         _colSize = _col.bounds.size;
+        SetFirst(false);
     }
     private void OnEnable()
     {
@@ -31,9 +33,12 @@ public class Obstacle : MonoBehaviour
 
     private void Update()
     {
-        ReturnToPool();
-        ChangeDirection();
-        transform.Translate(_dir * _moveSpeed * Time.deltaTime);
+        if (_isFirst == false)
+        {
+            ReturnToPool();
+            ChangeDirection();
+            transform.Translate(_dir * _moveSpeed * Time.deltaTime);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -41,6 +46,10 @@ public class Obstacle : MonoBehaviour
         {
             _hasPlayer = true;
         }
+    }
+    public void SetFirst(bool value)
+    {
+        _isFirst = value;
     }
     private void ChangeDirection()
     {

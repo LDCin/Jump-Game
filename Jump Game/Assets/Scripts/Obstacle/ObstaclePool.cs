@@ -19,6 +19,7 @@ public class ObstaclePool : MonoBehaviour
         {
             Obstacle obstacle = Instantiate(_obstaclePrefab);
             _obstacleList.Add(obstacle);
+            if (i == 0) obstacle.SetFirst(true);
             obstacle.gameObject.SetActive(false);
         }
     }
