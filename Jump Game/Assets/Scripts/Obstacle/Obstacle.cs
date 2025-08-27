@@ -58,7 +58,7 @@ public class Obstacle : MonoBehaviour
             if (_hasPlayer)
             {
                 _currentExistCount--;
-                SoundManager.Instance.PlayBreakSound();
+                if (_currentExistCount == 1) SoundManager.Instance.PlayBreakSound();
             }
             if (_currentExistCount <= 0)
             {

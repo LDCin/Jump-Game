@@ -17,20 +17,17 @@ public class SettingPanel : Panel
         _BGMButtonIcon.sprite = _onIcon;
         _SFXButtonIcon.sprite = _onIcon;
     }
-    public void Update()
-    {
-        if (_isOnBGM) TurnOnBGM();
-        else TurnOffBGM();
-        if (_isOnSFX) TurnOnSFX();
-        else TurnOffSFX();
-    }
     public void ChangeBGMState()
     {
         _isOnBGM = !_isOnBGM;
+        if (_isOnBGM) TurnOnBGM();
+        else TurnOffBGM();
     }
     public void ChangeSFXState()
     {
         _isOnSFX = !_isOnSFX;
+        if (_isOnSFX) TurnOnSFX();
+        else TurnOffSFX();
     }
     public void BackToMenu()
     {
