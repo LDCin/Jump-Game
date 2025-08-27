@@ -9,12 +9,10 @@ public class Panel : MonoBehaviour
     private string _panelName;
     public virtual void Open()
     {
-        SoundManager.Instance.PlayClickSound();
         gameObject.SetActive(true);
     }
     public virtual void Close()
     {
-        SoundManager.Instance.PlayClickSound();
         gameObject.SetActive(false);
         if (destroyOnClose)
         {

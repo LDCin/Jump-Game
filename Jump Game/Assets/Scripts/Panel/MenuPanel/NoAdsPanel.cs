@@ -6,6 +6,7 @@ public class NoAdsPanel : Panel
 {
     public void BackToMenu()
     {
+        SoundManager.Instance.PlayClickSound();
         Close();
     }
 }

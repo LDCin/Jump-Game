@@ -55,7 +55,11 @@ public class Obstacle : MonoBehaviour
     {
         if (transform.position.x - _colSize.x / 2 <= GameConfig.leftCam || transform.position.x + _colSize.x / 2 >= GameConfig.rightCam)
         {
-            if (_hasPlayer) _currentExistCount--;
+            if (_hasPlayer)
+            {
+                _currentExistCount--;
+                SoundManager.Instance.PlayBreakSound();
+            }
             if (_currentExistCount <= 0)
             {
                 BreakObstacle();

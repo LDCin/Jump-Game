@@ -9,15 +9,18 @@ public class GameOverPanel : Panel
     [SerializeField] private TextMeshProUGUI _scoreText;
     public void OnEnable()
     {
+        SoundManager.Instance.PlayGameOverSound();
         _scoreText.text = GameConfig.GET_SCORE.ToString();
     }
     public void RestartGame()
     {
+        SoundManager.Instance.PlayClickSound();
         Close();
         SceneManager.LoadScene(GameConfig.GAME_SCENE);
     }
     public void BackToMenu()
     {
+        SoundManager.Instance.PlayClickSound();
         Close();
         PanelManager.Instance.CloseAllPanel();
         SceneManager.LoadScene(GameConfig.MENU_SCENE);

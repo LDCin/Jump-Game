@@ -203,6 +203,9 @@ MonoBehaviour:
   _SFX: {fileID: 775287297}
   _defaultSFX: {fileID: 8300000, guid: b978379dc31453446a8aaed38fc4ebeb, type: 3}
   _clickSound: {fileID: 8300000, guid: b978379dc31453446a8aaed38fc4ebeb, type: 3}
+  _gameOverSound: {fileID: 8300000, guid: e386a9cd2df76cb42904ab317c898461, type: 3}
+  _jumpSound: {fileID: 8300000, guid: 485897f87db36b8428733184bf45cf17, type: 3}
+  _breakSound: {fileID: 8300000, guid: 283e95eb13d6f62478de8d95cb3ded66, type: 3}
 --- !u!4 &775287296
 Transform:
   m_ObjectHideFlags: 0
@@ -324,7 +327,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c2d031c19eb2d7d4f80896e3201e09bc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 47bd583c20870664388dbff9c3dffc2d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

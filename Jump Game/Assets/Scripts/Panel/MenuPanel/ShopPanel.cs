@@ -6,6 +6,7 @@ public class ShopPanel : Panel
 {
     public void BackToMenu()
     {
+        SoundManager.Instance.PlayClickSound();
         Close();
     }
 }

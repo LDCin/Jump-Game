@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     }
     private void Jump()
     {
+        SoundManager.Instance.PlayJumpSound();
         gameObject.transform.parent = null;
         _rb.velocity = Vector2.up * _jumpForce;
     }

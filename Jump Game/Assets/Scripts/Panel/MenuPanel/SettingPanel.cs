@@ -34,30 +34,36 @@ public class SettingPanel : Panel
     }
     public void BackToMenu()
     {
+        SoundManager.Instance.PlayClickSound();
         Close();
     }
     public void TurnOnBGM()
     {
+        SoundManager.Instance.PlayClickSound();
         SoundManager.Instance.PlayBGM();
         _BGMButtonIcon.sprite = _onIcon;
     }
     public void TurnOffBGM()
     {
+        SoundManager.Instance.PlayClickSound();
         SoundManager.Instance.StopBGM();
         _BGMButtonIcon.sprite = _offIcon;
     }
     public void TurnOnSFX()
     {
+        SoundManager.Instance.PlayClickSound();
         SoundManager.Instance.TurnOnSFX();
         _SFXButtonIcon.sprite = _onIcon;
     }
     public void TurnOffSFX()
     {
+        SoundManager.Instance.PlayClickSound();
         SoundManager.Instance.TurnOffSFX();
         _SFXButtonIcon.sprite = _offIcon;
     }
     public void Credit()
     {
+        SoundManager.Instance.PlayClickSound();
         Application.OpenURL(GameConfig.CREDIT_URL);
     }
 }
