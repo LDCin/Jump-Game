@@ -11,7 +11,6 @@ public class SoundManager : Singleton<SoundManager>
     public override void Awake()
     {
         base.Awake();
-
     }
     private void Start()
     {
@@ -19,6 +18,10 @@ public class SoundManager : Singleton<SoundManager>
     }
     public void PlayBGM()
     {
+        if (_BGM == null)
+        {
+            Debug.Log("Not Found: BGM");
+        }
         _BGM.loop = true;
         _BGM.Play();
     }
@@ -28,6 +31,10 @@ public class SoundManager : Singleton<SoundManager>
     }
     public void PlayClickSound()
     {
+        if (_clickSound == null)
+        {
+            Debug.Log("Not Found: Click Sound");
+        }
         _SFX.PlayOneShot(_clickSound);
     }
     public void TurnOffSFX()
