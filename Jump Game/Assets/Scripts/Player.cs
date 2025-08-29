@@ -9,9 +9,11 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rb;
     private bool _isFalling = false;
     private bool _firstJump = true;
+    private Collider2D _col;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _col = GetComponent<Collider2D>();
         GameConfig.camPositionMovement = transform.position.y;
     }
     private void Update()
@@ -52,6 +54,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag(GameConfig.OBSTACLE_TAG))
         {
             _obstacle = collision.gameObject.GetComponent<Obstacle>();
+            if (Mathf.Abs(_col.bounds.size.x - _obstacle.GetCollider2D().bounds.size.x) <= 0.5 && !_firstJump)
+            {
+                GameManager.Instance.JumpPerfectly();
+            }
             gameObject.transform.parent = _obstacle.transform;
             _isFalling = false;
             GameManager.Instance.SpawnAfterJump();

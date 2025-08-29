@@ -692,6 +692,7 @@ GameObject:
   - component: {fileID: 8024022543007693331}
   - component: {fileID: 3993656822557927292}
   - component: {fileID: 3522560964966310181}
+  - component: {fileID: 676350128745172736}
   m_Layer: 5
   m_Name: Image - GameName
   m_TagString: Untagged
@@ -756,6 +757,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &676350128745172736
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2431652374877879604}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9b0bb3d7b52b4af408764c6f38ad6d6c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4783896054536191838
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +790,7 @@ GameObject:
   - component: {fileID: 5452824681913776716}
   - component: {fileID: 7122329107493827137}
   - component: {fileID: 4612839720543697567}
+  - component: {fileID: 2047457229927696193}
   m_Layer: 5
   m_Name: Button - StartGame
   m_TagString: Untagged
@@ -888,6 +911,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &2047457229927696193
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783896054536191838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f9a239038dfe1841807c7ef2148fa8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7682164304874748563
 GameObject:
   m_ObjectHideFlags: 0

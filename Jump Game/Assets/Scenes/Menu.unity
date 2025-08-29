@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
+  _isShownPerfect: 0
 --- !u!4 &17793092
 Transform:
   m_ObjectHideFlags: 0

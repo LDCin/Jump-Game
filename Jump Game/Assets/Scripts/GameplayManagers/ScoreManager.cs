@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScoreManager : Singleton<ScoreManager>
 {
     private int _score = 0;
+    public bool _isShownPerfect = false;
     public override void Awake()
     {
         base.Awake();

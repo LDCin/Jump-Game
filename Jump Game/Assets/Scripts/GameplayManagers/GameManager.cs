@@ -29,6 +29,10 @@ public class GameManager : Singleton<GameManager>
     {
         _obstacleSpawner.SpawnObstacle();
     }
+    public void JumpPerfectly()
+    {
+        ScoreManager.Instance._isShownPerfect = true;
+    }
     public void GainScore(int scoreDelta)
     {
         ScoreManager.Instance.UpdateScore(scoreDelta);
