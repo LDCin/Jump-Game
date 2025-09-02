@@ -1,29 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopPanel : Panel
 {
-    [SerializeField] private GameObject _characterCustom;
-    [SerializeField] private GameObject _backgroundCustom;
     [SerializeField] private Button _characterTab;
     [SerializeField] private Button _backgroundTab;
+
+    [SerializeField] private Image _selectedItemImage;
+    [SerializeField] private TextMeshProUGUI _selectedItemName;
+
+    [SerializeField] private GameObject _characterCustom;
+    [SerializeField] private GameObject _backgroundCustom;
+
     private Color activeRed = new Color(0.9f, 0.2f, 0.2f, 1f);
     private Color inactiveRed = new Color(0.5f, 0.1f, 0.1f, 1f);
-
-    public void Start()
+    private void Start()
     {
-        ShowCharacterPanel();
+        ShowCharacterView();
     }
-    public void ShowCharacterPanel()
+    public void ShowCharacterView()
     {
         SoundManager.Instance.PlayClickSound();
         _characterCustom.SetActive(true);
         _backgroundCustom.SetActive(false);
         SetTabColors(_characterTab, _backgroundTab);
+        
     }
-    public void ShowBackgroundPanel()
+    public void ShowBackgroundView()
     {
         SoundManager.Instance.PlayClickSound();
         _characterCustom.SetActive(false);

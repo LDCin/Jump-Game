@@ -64,4 +64,10 @@ public static class GameConfig
 
     // CREDIT URL
     public static string CREDIT_URL = "https://github.com/LDCin";
+
+    // CUSTOM
+    public static string DEFAULT_CHARACTER_NAME = "Dog";
+    public static string DEFAULT_MAP_NAME = "City";
+    public static string CHARACTER_DATA_PATH = "ScriptableObjects/CharacterDatas/";
+    public static string MAP_DATA_PATH = "ScriptableObjects/MapDatas/";
 }
