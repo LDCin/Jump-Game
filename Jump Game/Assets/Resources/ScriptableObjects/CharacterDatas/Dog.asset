@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bc048dff12f6e4d98cecc7f4b75dd7, type: 3}
+  m_Name: Dog
+  m_EditorClassIdentifier: 
+  characterName: Dog
+  icon: {fileID: 1200227653, guid: ffc94ac0b3d9d2b4888195d3b0134ff2, type: 3}
+  sprite: {fileID: -1320638520, guid: 75a3eff4221f3bf4fa25908497a00525, type: 3}
+  head: {fileID: 1200227653, guid: ffc94ac0b3d9d2b4888195d3b0134ff2, type: 3}
+  body: {fileID: -392178331, guid: ffc94ac0b3d9d2b4888195d3b0134ff2, type: 3}
+  leftArm: {fileID: -1438931859, guid: ffc94ac0b3d9d2b4888195d3b0134ff2, type: 3}
+  rightArm: {fileID: 1042381192, guid: ffc94ac0b3d9d2b4888195d3b0134ff2, type: 3}
+  leftLeg: {fileID: -1346252572, guid: ffc94ac0b3d9d2b4888195d3b0134ff2, type: 3}
+  rightLeg: {fileID: -204264584, guid: ffc94ac0b3d9d2b4888195d3b0134ff2, type: 3}
+  tail: {fileID: -66731937, guid: ffc94ac0b3d9d2b4888195d3b0134ff2, type: 3}
+  characterAnimatorController: {fileID: 9100000, guid: 48f0eba29ec1452448997e7092f4c57b, type: 2}

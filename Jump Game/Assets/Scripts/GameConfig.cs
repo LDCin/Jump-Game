@@ -68,6 +68,8 @@ public static class GameConfig
     // CUSTOM
     public static string DEFAULT_CHARACTER_NAME = "Dog";
     public static string DEFAULT_MAP_NAME = "City";
+    public static string CURRENT_CHARACTER_NAME => PlayerPrefs.GetString("CurrentCharacter", DEFAULT_CHARACTER_NAME);
+    public static string CURRENT_MAP_NAME => PlayerPrefs.GetString("CurrentMap", DEFAULT_MAP_NAME);
     public static string CHARACTER_DATA_PATH = "ScriptableObjects/CharacterDatas/";
     public static string MAP_DATA_PATH = "ScriptableObjects/MapDatas/";
 }

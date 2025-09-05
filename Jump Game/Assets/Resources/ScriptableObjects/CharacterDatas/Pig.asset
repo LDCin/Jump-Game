@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bc048dff12f6e4d98cecc7f4b75dd7, type: 3}
+  m_Name: Pig
+  m_EditorClassIdentifier: 
+  characterName: Pig
+  icon: {fileID: 1778296423, guid: 947e62d29764f6b42a622c09f74c1bd6, type: 3}
+  sprite: {fileID: 1320330428, guid: 75a3eff4221f3bf4fa25908497a00525, type: 3}
+  head: {fileID: 1778296423, guid: 947e62d29764f6b42a622c09f74c1bd6, type: 3}
+  body: {fileID: -1620839041, guid: 947e62d29764f6b42a622c09f74c1bd6, type: 3}
+  leftArm: {fileID: -280933969, guid: 947e62d29764f6b42a622c09f74c1bd6, type: 3}
+  rightArm: {fileID: 1017900328, guid: 947e62d29764f6b42a622c09f74c1bd6, type: 3}
+  leftLeg: {fileID: 253087008, guid: 947e62d29764f6b42a622c09f74c1bd6, type: 3}
+  rightLeg: {fileID: 1648302950, guid: 947e62d29764f6b42a622c09f74c1bd6, type: 3}
+  tail: {fileID: 1198798627, guid: 947e62d29764f6b42a622c09f74c1bd6, type: 3}
+  characterAnimatorController: {fileID: 9100000, guid: c30b9a5ffb1a576449508dc432da798e, type: 2}

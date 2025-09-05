@@ -1,19 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _jumpForce = 1.0f;
     [SerializeField] private Obstacle _obstacle;
+
+    [SerializeField] private GameObject headObject;
+    [SerializeField] private GameObject bodyObject;
+    [SerializeField] private GameObject leftArmObject;
+    [SerializeField] private GameObject rightArmObject;
+    [SerializeField] private GameObject leftLegObject;
+    [SerializeField] private GameObject rightLegObject;
+
+    private string _characterName;
     private Rigidbody2D _rb;
     private bool _isFalling = false;
     private bool _firstJump = true;
     private Collider2D _col;
+    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        LoadCharacter();
         GameConfig.camPositionMovement = transform.position.y;
     }
     private void Update()
@@ -38,6 +53,7 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         SoundManager.Instance.PlayJumpSound();
+        _animator.SetTrigger("Jump");
         gameObject.transform.parent = null;
         _rb.velocity = Vector2.up * _jumpForce;
     }
@@ -71,6 +87,20 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.GameOver();
         }
+    }
+    private void LoadCharacter()
+    {
+        CharacterData player = CustomManager.Instance.GetCharacter(GameConfig.CURRENT_CHARACTER_NAME);
+        _characterName = player.characterName;
+
+        headObject.GetComponent<SpriteRenderer>().sprite = player.head;
+        bodyObject.GetComponent<SpriteRenderer>().sprite = player.body;
+        leftArmObject.GetComponent<SpriteRenderer>().sprite = player.leftArm;
+        rightArmObject.GetComponent<SpriteRenderer>().sprite = player.rightArm;
+        leftLegObject.GetComponent<SpriteRenderer>().sprite = player.leftLeg;
+        rightLegObject.GetComponent<SpriteRenderer>().sprite = player.rightLeg;
+
+        _animator.runtimeAnimatorController = player.characterAnimatorController;
     }
 }
 

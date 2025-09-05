@@ -7,9 +7,10 @@ using UnityEngine.UI;
 public class MapData : ScriptableObject
 {
     [Header("Basic Infor")]
-    public string characterName;
-    public Image backgroundImage;
-    public Image obstacleImage;
+    public string mapName;
+    public Sprite icon;
+    public Sprite backgroundImage;
+    public Sprite obstacleImage;
     [Header("Animation")]
     public RuntimeAnimatorController obstacleAnimatorController;
 }

@@ -8,7 +8,16 @@ public class CharacterData : ScriptableObject
 {
     [Header("Basic Infor")]
     public string characterName;
-    public Image image;
+    public Sprite icon;
+    public Sprite sprite;
+    [Header("Parts Of Body")]
+    public Sprite head;
+    public Sprite body;
+    public Sprite leftArm;
+    public Sprite rightArm;
+    public Sprite leftLeg;
+    public Sprite rightLeg;
+    public Sprite tail;
     [Header("Animation")]
     public RuntimeAnimatorController characterAnimatorController;
 }

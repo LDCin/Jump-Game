@@ -18,7 +18,9 @@ public class GameManager : Singleton<GameManager>
         ScoreManager.Instance.UpdateScore(0);
         PanelManager.Instance.OpenPanel(GameConfig.DEFAULT_PANEL);
         PanelManager.Instance.OpenPanel(GameConfig.SCORE_PANEL);
+
     }
+    
     public void InitObstacleSpawner()
     {
         ObstacleSpawner obstacleSpawner = Resources.Load<ObstacleSpawner>(GameConfig.OBSTACLE_PATH + GameConfig.OBSTACLE_SPAWNER);
