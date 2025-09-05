@@ -31,16 +31,21 @@ public class ShopPanel : Panel
     {
         ShowCharacterView();
         SelectCharacter(GameConfig.DEFAULT_CHARACTER_NAME);
+        SelectMap(GameConfig.DEFAULT_MAP_NAME);
     }
     private void SelectCharacter(string characterName)
     {
         OnCharacterSelected(CustomManager.Instance.GetCharacter(characterName));
     }
+    private void SelectMap(string mapName)
+    {
+        OnMapSelected(CustomManager.Instance.GetMap(mapName));
+    }
     private void OnCharacterSelected(CharacterData character)
     {
         _selectedItemImage.sprite = character.sprite;
         _selectedItemName.text = character.characterName;
-        
+
         PlayerPrefs.SetString("CurrentCharacter", character.characterName);
         PlayerPrefs.Save();
     }

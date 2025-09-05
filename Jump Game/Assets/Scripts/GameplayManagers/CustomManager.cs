@@ -33,4 +33,20 @@ public class CustomManager : Singleton<CustomManager>
         }
         return character;
     }
+    public MapData GetMap(string mapName)
+    {
+        MapData map = _mapDataList.Find(m => m.mapName == mapName);
+        if (map != null)
+        {
+            Debug.Log("Found Map: " + map.mapName);
+            return map;
+        }
+        else
+        {
+            map = ScriptableObject.CreateInstance<MapData>();
+            map.mapName = mapName;
+            _mapDataList.Add(map);
+        }
+        return map;
+    }
 }

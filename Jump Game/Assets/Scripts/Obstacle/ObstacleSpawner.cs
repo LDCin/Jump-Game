@@ -17,15 +17,25 @@ public class ObstacleSpawner : MonoBehaviour
         _lastSpawnPos.y = GameConfig.topCam - _spawnDistance;
         _lastSpawnPos.x = 0;
         _obstaclePool.ResetPool();
+        
+    }
+    private void Start()
+    {
         for (int i = 0; i < _existNumber; i++)
         {
             SpawnObstacle();
         }
     }
+    private void LoadObstacle(Obstacle obstacle)
+    {
+        MapData mapData = CustomManager.Instance.GetMap(GameConfig.CURRENT_MAP_NAME);
+        obstacle.SetSprite(mapData);
+    }
     public void SpawnObstacle()
     {
         Obstacle obstacle = _obstaclePool.GetObstacle();
         obstacle.gameObject.SetActive(true);
+        LoadObstacle(obstacle);
         obstacle.GetHasPlayer();
         if (_distanceOffset == 0) _distanceOffset = obstacle.GetCollider2D().bounds.size.x / 2;
         obstacle.gameObject.transform.position = _lastSpawnPos;

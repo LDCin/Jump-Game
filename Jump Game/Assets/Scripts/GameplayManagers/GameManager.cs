@@ -6,11 +6,18 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private ObstacleSpawner _obstacleSpawner;
+    [SerializeField] private Player _playerPrefab;
+    [SerializeField] private GameObject _playerSpawnPosition;
+    [SerializeField] private GameObject _background;
+    
+    private Player _player;
     public override void Awake()
     {
         base.Awake();
+        LoadBackground();
         InitObstacleSpawner();
         Time.timeScale = 1;
+        LoadPlayer();
     }
     public void Start()
     {
@@ -18,15 +25,46 @@ public class GameManager : Singleton<GameManager>
         ScoreManager.Instance.UpdateScore(0);
         PanelManager.Instance.OpenPanel(GameConfig.DEFAULT_PANEL);
         PanelManager.Instance.OpenPanel(GameConfig.SCORE_PANEL);
-
     }
-    
     public void InitObstacleSpawner()
     {
         ObstacleSpawner obstacleSpawner = Resources.Load<ObstacleSpawner>(GameConfig.OBSTACLE_PATH + GameConfig.OBSTACLE_SPAWNER);
         ObstacleSpawner newObstacleSpawner = Instantiate(obstacleSpawner, transform);
         _obstacleSpawner = newObstacleSpawner;
     }
+    // SET UP
+    private void LoadPlayer()
+    {
+        CharacterData playerData = GameConfig.CURRENT_CHARACTER_DATA;
+
+        _player = Instantiate(_playerPrefab, _playerSpawnPosition.transform.position, Quaternion.identity);
+
+        _player.transform.Find("Head").GetComponent<SpriteRenderer>().sprite = playerData.head;
+        _player.transform.Find("Body").GetComponent<SpriteRenderer>().sprite = playerData.body;
+        _player.transform.Find("LeftArm").GetComponent<SpriteRenderer>().sprite = playerData.leftArm;
+        _player.transform.Find("RightArm").GetComponent<SpriteRenderer>().sprite = playerData.rightArm;
+        _player.transform.Find("Tail").GetComponent<SpriteRenderer>().sprite = playerData.tail;
+        _player.transform.Find("LeftLeg").GetComponent<SpriteRenderer>().sprite = playerData.leftLeg;
+        _player.transform.Find("RightLeg").GetComponent<SpriteRenderer>().sprite = playerData.rightLeg;
+
+        Animator animator = _player.GetComponent<Animator>();
+        animator.runtimeAnimatorController = playerData.characterAnimatorController;
+
+        GameConfig.camPositionMovement = _player.transform.position.y;
+    }
+
+    private void LoadBackground()
+    {
+        MapData mapData = GameConfig.CURRENT_MAP_DATA;
+        _background.transform.GetComponent<SpriteRenderer>().sprite = mapData.backgroundImage;
+    }
+
+    public Player GetPlayer()
+    {
+        return _player;
+    }
+
+    // GAMEPLAY
     public void SpawnAfterJump()
     {
         _obstacleSpawner.SpawnObstacle();

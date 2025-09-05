@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: City
   m_EditorClassIdentifier: 
   mapName: City
+  icon: {fileID: -781541513, guid: e9c6213f2690ac545860995a5d9f13e8, type: 3}
   backgroundImage: {fileID: -781541513, guid: e9c6213f2690ac545860995a5d9f13e8, type: 3}
-  obstacleImage: {fileID: 2083896699, guid: 8d9cdb87fef39e2488ce7e1a5c7f110a, type: 3}
-  obstacleAnimatorController: {fileID: 0}
+  obstacleBeforeImage: {fileID: 2083896699, guid: 8d9cdb87fef39e2488ce7e1a5c7f110a, type: 3}
+  obstacleAfterImage: {fileID: 136001180, guid: 8d9cdb87fef39e2488ce7e1a5c7f110a, type: 3}
+  obstacleAnimatorController: {fileID: 9100000, guid: 103c85fdd83376747bbf957949a39fcc, type: 2}

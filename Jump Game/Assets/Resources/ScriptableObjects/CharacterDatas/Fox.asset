@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bc048dff12f6e4d98cecc7f4b75dd7, type: 3}
+  m_Name: Fox
+  m_EditorClassIdentifier: 
+  characterName: Fox
+  icon: {fileID: 686116684, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
+  sprite: {fileID: 159470467, guid: 75a3eff4221f3bf4fa25908497a00525, type: 3}
+  head: {fileID: 686116684, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
+  body: {fileID: -856314948, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
+  leftArm: {fileID: -1240742364, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
+  rightArm: {fileID: -960828101, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
+  leftLeg: {fileID: 2004496297, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
+  rightLeg: {fileID: -2139921090, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
+  tail: {fileID: 966718248, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
+  characterAnimatorController: {fileID: 9100000, guid: 1ca0595925459de40afcbb9d574accfa, type: 2}

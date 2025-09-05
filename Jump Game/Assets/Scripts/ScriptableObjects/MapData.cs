@@ -10,7 +10,8 @@ public class MapData : ScriptableObject
     public string mapName;
     public Sprite icon;
     public Sprite backgroundImage;
-    public Sprite obstacleImage;
-    [Header("Animation")]
-    public RuntimeAnimatorController obstacleAnimatorController;
+    public Sprite obstacleBeforeImage;
+    public Sprite obstacleAfterImage;
+    // [Header("Animation")]
+    // public RuntimeAnimatorController obstacleAnimatorController;
 }

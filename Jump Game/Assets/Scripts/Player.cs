@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject bodyObject;
     [SerializeField] private GameObject leftArmObject;
     [SerializeField] private GameObject rightArmObject;
+    [SerializeField] private GameObject tailObject;
     [SerializeField] private GameObject leftLegObject;
     [SerializeField] private GameObject rightLegObject;
 
@@ -97,6 +98,7 @@ public class Player : MonoBehaviour
         bodyObject.GetComponent<SpriteRenderer>().sprite = player.body;
         leftArmObject.GetComponent<SpriteRenderer>().sprite = player.leftArm;
         rightArmObject.GetComponent<SpriteRenderer>().sprite = player.rightArm;
+        tailObject.GetComponent<SpriteRenderer>().sprite = player.tail;
         leftLegObject.GetComponent<SpriteRenderer>().sprite = player.leftLeg;
         rightLegObject.GetComponent<SpriteRenderer>().sprite = player.rightLeg;
 

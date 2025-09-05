@@ -72,4 +72,6 @@ public static class GameConfig
     public static string CURRENT_MAP_NAME => PlayerPrefs.GetString("CurrentMap", DEFAULT_MAP_NAME);
     public static string CHARACTER_DATA_PATH = "ScriptableObjects/CharacterDatas/";
     public static string MAP_DATA_PATH = "ScriptableObjects/MapDatas/";
+    public static CharacterData CURRENT_CHARACTER_DATA => CustomManager.Instance.GetCharacter(CURRENT_CHARACTER_NAME);
+    public static MapData CURRENT_MAP_DATA => CustomManager.Instance.GetMap(CURRENT_MAP_NAME);
 }

@@ -6,6 +6,9 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private int _existCount = 2;
     [SerializeField] private float _moveSpeed = 1.0f;
+    private SpriteRenderer _spriteRenderer;
+    private Sprite _beforeBreakSprite;
+    private Sprite _afterBreakSprite;
     private int _currentExistCount;
     private Collider2D _col;
     private Vector2 _dir;
@@ -16,6 +19,12 @@ public class Obstacle : MonoBehaviour
     private void Awake()
     {
         _col = GetComponent<Collider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        Debug.Log("Awake(): " + gameObject.name + " | ID=" + GetInstanceID() + " | SR=" + (_spriteRenderer != null));
+        if (_spriteRenderer == null)
+        {
+            Debug.LogError("Not Found Sprite Renderer");
+        }
         EnableColliderObstacle();
         _currentExistCount = _existCount;
         _colSize = _col.bounds.size;
@@ -30,7 +39,6 @@ public class Obstacle : MonoBehaviour
         else _dir = Vector2.left;
         _hasPlayer = false;
     }
-
     private void Update()
     {
         if (_isFirst == false)
@@ -59,6 +67,7 @@ public class Obstacle : MonoBehaviour
             {
                 _currentExistCount--;
                 if (_currentExistCount == 1) SoundManager.Instance.PlayBreakSound();
+                _spriteRenderer.sprite = _afterBreakSprite;
             }
             if (_currentExistCount <= 0)
             {
@@ -68,6 +77,13 @@ public class Obstacle : MonoBehaviour
             _dir = new Vector2(-_dir.x, _dir.y);
         }
     }
+    public void SetSprite(MapData mapData)
+    {
+        _beforeBreakSprite = mapData.obstacleBeforeImage;
+        _spriteRenderer.sprite = _beforeBreakSprite;
+        _afterBreakSprite = mapData.obstacleAfterImage;
+    }
+
     public void RestoreObstacle()
     {
         _hasPlayer = false;
