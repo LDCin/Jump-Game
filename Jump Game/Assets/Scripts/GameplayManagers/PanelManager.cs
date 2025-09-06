@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PanelManager : Singleton<PanelManager>
 {
@@ -47,7 +48,7 @@ public class PanelManager : Singleton<PanelManager>
         Panel newPanel = Instantiate(panel, transform);
         newPanel.transform.SetAsLastSibling();
         newPanel.gameObject.SetActive(false);
-        
+
         newPanel.SetPanelName(namePanel);
 
         panelList[namePanel] = newPanel;
@@ -80,5 +81,21 @@ public class PanelManager : Singleton<PanelManager>
         {
             panelList.Remove(namePanel);
         }
+    }
+
+    
+    public bool IsPointerOverUI()
+    {
+        
+        EventSystem eventSystem = EventSystem.current;
+
+        PointerEventData eventData = new PointerEventData(eventSystem);
+        eventData.position = Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        eventSystem.RaycastAll(eventData, results);
+
+        return results.Count > 0;
     }
 }

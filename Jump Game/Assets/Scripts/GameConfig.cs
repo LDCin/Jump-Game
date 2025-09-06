@@ -3,17 +3,19 @@ using UnityEngine;
 
 public static class GameConfig
 {
-    // Scene
+    // SCENE
     public static string GAME_SCENE = "Game";
     public static string MENU_SCENE = "Menu";
-    // Tag
+
+    // TAG
     public static string PLAYER_TAG = "Player";
     public static string WALL_TAG = "Wall";
     public static string OBSTACLE_TAG = "Obstacle";
     public static string DEAD_ZONE_TAG = "DeadZone";
+    public static string SCORE_ZONE_TAG = "ScoreZone";
 
 
-    // Camera
+    // CAMERA
     public static Camera cam => Camera.main;
     public static Vector3 startCamPosition => cam.transform.position;
     public static Vector3 camPosition => cam.transform.position;
@@ -25,7 +27,7 @@ public static class GameConfig
     public static float botCam => camPosition.y - halfHeight;
     public static float camPositionMovement;
 
-    // Score
+    // SCORE
     public static string HIGH_SCORE = "HighScore";
     public static string SCORE = "Score";
 

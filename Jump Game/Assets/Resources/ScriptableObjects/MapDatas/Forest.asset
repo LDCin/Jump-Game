@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3329829d88d5bd94380fc7e4a7b6e8d0, type: 3}
   m_Name: Forest
   m_EditorClassIdentifier: 
-  mapName: 
-  icon: {fileID: 0}
-  backgroundImage: {fileID: 0}
-  obstacleBeforeImage: {fileID: 0}
-  obstacleAfterImage: {fileID: 0}
+  mapName: Forest
+  icon: {fileID: -164155342, guid: e9c6213f2690ac545860995a5d9f13e8, type: 3}
+  backgroundImage: {fileID: -164155342, guid: e9c6213f2690ac545860995a5d9f13e8, type: 3}
+  obstacleBeforeImage: {fileID: 6522398, guid: 8d9cdb87fef39e2488ce7e1a5c7f110a, type: 3}
+  obstacleAfterImage: {fileID: -731731025, guid: 8d9cdb87fef39e2488ce7e1a5c7f110a, type: 3}

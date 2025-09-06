@@ -6,6 +6,12 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private int _existCount = 2;
     [SerializeField] private float _moveSpeed = 1.0f;
+    [SerializeField] private float _realSpeed = 1.0f;
+    [SerializeField] private bool _enableBlink = false;
+    [SerializeField] private float _blinkGap = 0.5f;
+    [SerializeField] private bool _enableFast = false;
+    [SerializeField] private float _extraSpeed;
+
     private SpriteRenderer _spriteRenderer;
     private Sprite _beforeBreakSprite;
     private Sprite _afterBreakSprite;
@@ -16,36 +22,73 @@ public class Obstacle : MonoBehaviour
     private Vector3 _colSize;
     private bool _isFirst = false;
 
+    // BLINK
+    private float _blinkTimer = 0f;
+    private bool _isVisible = true;
+
     private void Awake()
     {
         _col = GetComponent<Collider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        Debug.Log("Awake(): " + gameObject.name + " | ID=" + GetInstanceID() + " | SR=" + (_spriteRenderer != null));
-        if (_spriteRenderer == null)
-        {
-            Debug.LogError("Not Found Sprite Renderer");
-        }
         EnableColliderObstacle();
         _currentExistCount = _existCount;
         _colSize = _col.bounds.size;
         SetFirst(false);
     }
+
     private void OnEnable()
     {
-        if (Random.Range(0, 100) < 50)
-        {
-            _dir = Vector2.right;
-        }
-        else _dir = Vector2.left;
+        _spriteRenderer.enabled = true;
+        PickRandomType();
+        _dir = Random.Range(0, 100) < 50 ? Vector2.right : Vector2.left;
         _hasPlayer = false;
+        _blinkTimer = 0f;
+        _isVisible = true;
+        if (_enableFast)
+        {
+            _realSpeed = _moveSpeed + _extraSpeed;
+        }
+        else _realSpeed = _moveSpeed;
     }
-    private void Update()
+
+    public virtual void Update()
     {
         if (_isFirst == false)
         {
             ReturnToPool();
             ChangeDirection();
-            transform.Translate(_dir * _moveSpeed * Time.deltaTime);
+            transform.Translate(_dir * _realSpeed * Time.deltaTime);
+        }
+
+        if (_enableBlink)
+        {
+            _blinkTimer += Time.deltaTime;
+            if (_blinkTimer >= _blinkGap)
+            {
+                _blinkTimer = 0f;
+                _isVisible = !_isVisible;
+                _spriteRenderer.enabled = _isVisible;
+            }
+        }
+    }
+    private void PickRandomType()
+    {
+        int type = Random.Range(1, 4);
+        if (_isFirst) type = 1;
+        if (type == 1)
+        {
+            _enableBlink = false;
+            _enableFast = false;
+        }
+        else if (type == 2)
+        {
+            _enableFast = false;
+            _enableBlink = true;
+        }
+        else if (type == 3)
+        {
+            _enableBlink = false;
+            _enableFast = true;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -92,9 +135,9 @@ public class Obstacle : MonoBehaviour
     }
     public void BreakObstacle()
     {
-        if (transform.childCount > 0)
+        if (transform.childCount > 1)
         {
-            Transform child = transform.GetChild(0);
+            Transform child = transform.GetChild(1);
             child.parent = null;
         }
         RestoreObstacle();

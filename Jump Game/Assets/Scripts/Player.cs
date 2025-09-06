@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rb;
     private bool _isFalling = false;
     private bool _firstJump = true;
+    private int _scoreToAdd = 0;
+
     private Collider2D _col;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
@@ -35,7 +37,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         ChangeState();
-        if (Input.touchCount == 1)
+        if (Input.touchCount > 0 && !PanelManager.Instance.IsPointerOverUI())
         {
             if (_firstJump)
             {
@@ -78,8 +80,12 @@ public class Player : MonoBehaviour
             gameObject.transform.parent = _obstacle.transform;
             _isFalling = false;
             GameManager.Instance.SpawnAfterJump();
-            if (!_firstJump) GameManager.Instance.GainScore(1);
-            CameraController._instance.ChangeTargetTo(transform.position.y);
+            if (!_firstJump && _scoreToAdd > 0)
+            {
+                GameManager.Instance.GainScore(_scoreToAdd / 2);
+                _scoreToAdd = 0;
+            }
+            CameraController._instance.ChangeTargetTo(transform.position.y - 3.0f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -87,6 +93,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag(GameConfig.DEAD_ZONE_TAG))
         {
             GameManager.Instance.GameOver();
+        }
+        else if (collision.gameObject.CompareTag(GameConfig.SCORE_ZONE_TAG))
+        {
+            _scoreToAdd++;
         }
     }
     private void LoadCharacter()

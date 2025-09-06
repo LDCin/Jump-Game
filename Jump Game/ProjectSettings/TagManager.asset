@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - DeadZone
   - Canvas
+  - ScoreZone
   layers:
   - Default
   - TransparentFX
