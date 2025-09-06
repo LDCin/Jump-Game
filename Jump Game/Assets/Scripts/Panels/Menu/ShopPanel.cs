@@ -35,7 +35,7 @@ public class ShopPanel : Panel
     }
     private void OnEnable()
     {
-        _animator.SetTrigger("Start");
+        // _animator.SetTrigger("Start");
         ShowCharacterView();
     }
     private void SelectCharacter(string characterName)
@@ -172,7 +172,7 @@ public class ShopPanel : Panel
     }
     public void ShowBackgroundView()
     {
-        _animator.enabled = false;
+        // _animator.enabled = false;
         if (!_isInitMap)
         {
             CreateMapSlots(CustomManager.Instance._mapDataList);
@@ -191,7 +191,7 @@ public class ShopPanel : Panel
     }
     public void BackToMenu()
     {
-        _animator.enabled = true;
+        // _animator.enabled = true;
         SoundManager.Instance.PlayClickSound();
         Close();
     }
