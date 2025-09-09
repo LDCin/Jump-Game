@@ -16,6 +16,10 @@ public class SoundManager : Singleton<SoundManager>
     public override void Awake()
     {
         base.Awake();
+        // if (GameConfig.BGM_STATE == 1) PlayBGM();
+        // else StopBGM();
+        // if (GameConfig.SFX_STATE == 1) TurnOnSFX();
+        // else TurnOffSFX();
     }
     private void Start()
     {
@@ -29,10 +33,12 @@ public class SoundManager : Singleton<SoundManager>
         }
         _BGM.loop = true;
         _BGM.Play();
+        PlayerPrefs.SetInt("BGMState", 1);
     }
     public void StopBGM()
     {
         _BGM.Stop();
+        PlayerPrefs.SetInt("BGMState", 0);
     }
     public void PlayClickSound()
     {
@@ -45,10 +51,12 @@ public class SoundManager : Singleton<SoundManager>
     public void TurnOffSFX()
     {
         _SFX.mute = true;
+        PlayerPrefs.SetInt("SFXState", 0);
     }
     public void TurnOnSFX()
     {
         _SFX.mute = false;
+        PlayerPrefs.SetInt("SFXState", 1);
     }
     public void PlayJumpSound()
     {

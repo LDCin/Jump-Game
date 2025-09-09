@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         ChangeState();
-        if (Input.touchCount > 0 && !PanelManager.Instance.IsPointerOverUI())
+        if (Input.touchCount > 0)
         {
             if (_firstJump)
             {
@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
             _obstacle = collision.gameObject.GetComponent<Obstacle>();
             if (Mathf.Abs(_col.bounds.size.x - _obstacle.GetCollider2D().bounds.size.x) <= 0.5 && !_firstJump)
             {
+                Debug.Log("PERFECT");
                 GameManager.Instance.JumpPerfectly();
             }
             gameObject.transform.parent = _obstacle.transform;

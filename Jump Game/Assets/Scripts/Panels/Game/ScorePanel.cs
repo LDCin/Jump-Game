@@ -15,11 +15,13 @@ public class ScorePanel : Panel
         _scoreText.text = GameConfig.GET_SCORE.ToString();
         if (ScoreManager.Instance._isShownPerfect)
         {
+            Debug.Log("TIME " + _currentTimeExist);
             ShowPerfectEffect();
             _currentTimeExist += Time.deltaTime;
         }
         if (_currentTimeExist >= _timeExist)
         {
+            Debug.Log("TIME2 " + _currentTimeExist);
             HidePerfectEffect();
         }
     }

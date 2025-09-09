@@ -63,6 +63,8 @@ public static class GameConfig
     public static string CLICK_SOUND = "ClickSound";
     public static AudioClip[] audioClipList = Resources.LoadAll<AudioClip>(AUDIO_PATH);
     public static AudioClip BGM_SOUND = Resources.Load<AudioClip>(AUDIO_PATH + BGM_PATH);
+    public static int BGM_STATE => PlayerPrefs.GetInt("BGMState", 1);
+    public static int SFX_STATE => PlayerPrefs.GetInt("SFXState", 1);
 
     // CREDIT URL
     public static string CREDIT_URL = "https://github.com/LDCin";
