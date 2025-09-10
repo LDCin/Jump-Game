@@ -7,6 +7,7 @@ public class ScoreManager : Singleton<ScoreManager>
 {
     private int _score = 0;
     public bool _isShownPerfect = false;
+    public int _scoreLimit = 11;
     public override void Awake()
     {
         base.Awake();
@@ -24,6 +25,10 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             PlayerPrefs.SetInt("HighScore", _score);
         }
+    }
+    public int GetScore()
+    {
+        return _score;
     }
     public void SetScore(int newScore)
     {

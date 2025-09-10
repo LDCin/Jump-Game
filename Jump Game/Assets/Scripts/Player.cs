@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     {
         SoundManager.Instance.PlayJumpSound();
         _animator.SetTrigger("Jump");
+        _obstacle.SetHasPlayer();
         gameObject.transform.parent = null;
         _rb.velocity = Vector2.up * _jumpForce;
     }
@@ -73,7 +74,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag(GameConfig.OBSTACLE_TAG))
         {
             _obstacle = collision.gameObject.GetComponent<Obstacle>();
-            if (Mathf.Abs(_col.bounds.size.x - _obstacle.GetCollider2D().bounds.size.x) <= 0.5 && !_firstJump)
+            float playerCenterX = _col.bounds.center.x;
+            float obstacleCenterX = _obstacle.GetCollider2D().bounds.center.x;
+
+            if (Mathf.Abs(playerCenterX - obstacleCenterX) <= 0.05f && !_firstJump)
             {
                 Debug.Log("PERFECT");
                 GameManager.Instance.JumpPerfectly();

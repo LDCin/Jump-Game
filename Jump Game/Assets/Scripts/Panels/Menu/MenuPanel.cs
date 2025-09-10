@@ -35,7 +35,6 @@ public class MenuPanel : Panel
     }
     public void UpdateHighScoreText()
     {
-        SoundManager.Instance.PlayClickSound();
         _highScoreText.text = GameConfig.GET_HIGH_SCORE.ToString();
     }
 }

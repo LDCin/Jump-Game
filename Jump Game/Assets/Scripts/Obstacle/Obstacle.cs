@@ -11,6 +11,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private float _blinkGap = 0.5f;
     [SerializeField] private bool _enableFast = false;
     [SerializeField] private float _extraSpeed;
+    private bool _enableType = false;
 
     private SpriteRenderer _spriteRenderer;
     private Sprite _beforeBreakSprite;
@@ -33,6 +34,7 @@ public class Obstacle : MonoBehaviour
         EnableColliderObstacle();
         _currentExistCount = _existCount;
         _colSize = _col.bounds.size;
+        _enableType = false;
         SetFirst(false);
     }
 
@@ -71,10 +73,14 @@ public class Obstacle : MonoBehaviour
             }
         }
     }
+    public void EnableChangeType()
+    {
+        _enableType = true;
+    }
     private void PickRandomType()
     {
         int type = Random.Range(1, 4);
-        if (_isFirst) type = 1;
+        if (_isFirst || !_enableType) type = 1;
         if (type == 1)
         {
             _enableBlink = false;
@@ -102,6 +108,10 @@ public class Obstacle : MonoBehaviour
     {
         _isFirst = value;
     }
+    public void SetHasPlayer()
+    {
+        _hasPlayer = !_hasPlayer;
+    }
     private void ChangeDirection()
     {
         if (transform.position.x - _colSize.x / 2 <= GameConfig.leftCam || transform.position.x + _colSize.x / 2 >= GameConfig.rightCam)
@@ -109,7 +119,7 @@ public class Obstacle : MonoBehaviour
             if (_hasPlayer)
             {
                 _currentExistCount--;
-                if (_currentExistCount == 1) SoundManager.Instance.PlayBreakSound();
+                if (_currentExistCount == 1 && _hasPlayer) SoundManager.Instance.PlayBreakSound();
                 _spriteRenderer.sprite = _afterBreakSprite;
             }
             if (_currentExistCount <= 0)
@@ -129,7 +139,7 @@ public class Obstacle : MonoBehaviour
 
     public void RestoreObstacle()
     {
-        _hasPlayer = false;
+        SetHasPlayer();
         _currentExistCount = _existCount;
         EnableColliderObstacle();
     }
@@ -163,10 +173,5 @@ public class Obstacle : MonoBehaviour
     public Collider2D GetCollider2D()
     {
         return _col;
-    }
-    public void GetHasPlayer()
-    {
-        if (_hasPlayer) Debug.Log("True");
-        else Debug.Log("False");
     }
 }

@@ -34,9 +34,9 @@ public class ObstacleSpawner : MonoBehaviour
     public void SpawnObstacle()
     {
         Obstacle obstacle = _obstaclePool.GetObstacle();
+        if (ScoreManager.Instance.GetScore() >= ScoreManager.Instance._scoreLimit) obstacle.EnableChangeType();
         obstacle.gameObject.SetActive(true);
         LoadObstacle(obstacle);
-        obstacle.GetHasPlayer();
         if (_distanceOffset == 0) _distanceOffset = obstacle.GetCollider2D().bounds.size.x / 2;
         obstacle.gameObject.transform.position = _lastSpawnPos;
         _lastSpawnPos = new Vector2(Random.Range(GameConfig.leftCam + _distanceOffset, GameConfig.rightCam - _distanceOffset), _lastSpawnPos.y - _spawnDistance);

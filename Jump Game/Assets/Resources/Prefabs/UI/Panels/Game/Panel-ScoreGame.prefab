@@ -55,7 +55,7 @@ MonoBehaviour:
   destroyOnClose: 0
   _scoreText: {fileID: 4903095341455889606}
   _perfectEffect: {fileID: 4409795277626673913}
-  _timeExist: 5
+  _timeExist: 1
 --- !u!222 &8427822074809586302
 CanvasRenderer:
   m_ObjectHideFlags: 0
