@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         LoadCharacter();
-        GameConfig.camPositionMovement = transform.position.y;
+        GameConfig.CAM_POSITION_MOVEMENT = transform.position.y;
     }
     private void Update()
     {

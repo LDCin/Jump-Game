@@ -14,18 +14,20 @@ public static class GameConfig
     public static string DEAD_ZONE_TAG = "DeadZone";
     public static string SCORE_ZONE_TAG = "ScoreZone";
 
+    //MAP
+    public static Vector2 WALL_SIZE = new Vector2(0.2f, HALF_HEIGHT * 2);
 
     // CAMERA
-    public static Camera cam => Camera.main;
-    public static Vector3 startCamPosition => cam.transform.position;
-    public static Vector3 camPosition => cam.transform.position;
-    public static float halfHeight => cam.orthographicSize;
-    public static float halfWidth => cam.aspect * halfHeight;
-    public static float leftCam => camPosition.x - halfWidth;
-    public static float rightCam => camPosition.x + halfWidth;
-    public static float topCam => camPosition.y + halfHeight;
-    public static float botCam => camPosition.y - halfHeight;
-    public static float camPositionMovement;
+    public static Camera CAM => Camera.main;
+    public static Vector3 START_CAM_POSITION => CAM.transform.position;
+    public static Vector3 CAM_POSITION => CAM.transform.position;
+    public static float HALF_HEIGHT => CAM.orthographicSize;
+    public static float HALF_WIDTH => CAM.aspect * HALF_HEIGHT;
+    public static float LEFT_CAM => CAM_POSITION.x - HALF_WIDTH;
+    public static float RIGHT_CAM => CAM_POSITION.x + HALF_WIDTH;
+    public static float TOP_CAM => CAM_POSITION.y + HALF_HEIGHT;
+    public static float BOT_CAM => CAM_POSITION.y - HALF_HEIGHT;
+    public static float CAM_POSITION_MOVEMENT;
 
     // SCORE
     public static string HIGH_SCORE = "HighScore";

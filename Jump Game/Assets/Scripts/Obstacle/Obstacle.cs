@@ -17,7 +17,7 @@ public class Obstacle : MonoBehaviour
     private Sprite _beforeBreakSprite;
     private Sprite _afterBreakSprite;
     private int _currentExistCount;
-    private Collider2D _col;
+    private BoxCollider2D _col;
     private Vector2 _dir;
     private bool _hasPlayer = false;
     private Vector3 _colSize;
@@ -29,7 +29,7 @@ public class Obstacle : MonoBehaviour
 
     private void Awake()
     {
-        _col = GetComponent<Collider2D>();
+        _col = GetComponent<BoxCollider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         EnableColliderObstacle();
         _currentExistCount = _existCount;
@@ -41,6 +41,7 @@ public class Obstacle : MonoBehaviour
     private void OnEnable()
     {
         _spriteRenderer.enabled = true;
+        _col.size = _spriteRenderer.size;
         PickRandomType();
         _dir = Random.Range(0, 100) < 50 ? Vector2.right : Vector2.left;
         _hasPlayer = false;
@@ -114,7 +115,7 @@ public class Obstacle : MonoBehaviour
     }
     private void ChangeDirection()
     {
-        if (transform.position.x - _colSize.x / 2 <= GameConfig.leftCam || transform.position.x + _colSize.x / 2 >= GameConfig.rightCam)
+        if (transform.position.x - _colSize.x / 2 <= GameConfig.LEFT_CAM + GameConfig.WALL_SIZE.x || transform.position.x + _colSize.x / 2 >= GameConfig.RIGHT_CAM - GameConfig.WALL_SIZE.x)
         {
             if (_hasPlayer)
             {
@@ -129,6 +130,20 @@ public class Obstacle : MonoBehaviour
             }
             _dir = new Vector2(-_dir.x, _dir.y);
         }
+        // if (_hasPlayer)
+        // {
+        //     {
+        //         _currentExistCount--;
+        //         if (_currentExistCount == 1 && _hasPlayer) SoundManager.Instance.PlayBreakSound();
+        //         _spriteRenderer.sprite = _afterBreakSprite;
+        //     }
+        //     if (_currentExistCount <= 0)
+        //     {
+        //         BreakObstacle();
+        //         return;
+        //     }
+        //     _dir = new Vector2(-_dir.x, _dir.y);
+        // }
     }
     public void SetSprite(MapData mapData)
     {
@@ -156,7 +171,7 @@ public class Obstacle : MonoBehaviour
     }
     private void ReturnToPool()
     {
-        if (transform.position.y >= GameConfig.topCam)
+        if (transform.position.y >= GameConfig.TOP_CAM)
         {
             BreakObstacle();
             Debug.Log("Return To Pool!");

@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
     private BoxCollider2D _leftCamBoundBox;
     private BoxCollider2D _rightCamBoundBox;
     private BoxCollider2D _deadZoneBox;
+    private SpriteRenderer _leftCamSprite;
+    private SpriteRenderer _rightCamSprite;
     private void Awake()
     {
         _instance = this;
@@ -38,19 +40,28 @@ public class CameraController : MonoBehaviour
     {
         UpdateCamBound();
     }
-    private void InitBound() {
+    private void InitBound()
+    {
         _leftCamBoundBox = _leftCamBound.GetComponent<BoxCollider2D>();
         _rightCamBoundBox = _rightCamBound.GetComponent<BoxCollider2D>();
         _deadZoneBox = _deadZone.GetComponent<BoxCollider2D>();
+
+        _leftCamSprite = _leftCamBound.GetComponent<SpriteRenderer>();
+        _rightCamSprite = _rightCamBound.GetComponent<SpriteRenderer>();
     }
     private void UpdateCamBound()
     {
-        _leftCamBoundBox.size = new Vector2(0.2f, GameConfig.halfHeight * 2);
-        _rightCamBoundBox.size = new Vector2(0.2f, GameConfig.halfHeight * 2);
-        _deadZoneBox.size = new Vector2(GameConfig.halfWidth * 2, 0.2f);
-        _leftCamBound.transform.position = new Vector3(GameConfig.leftCam, GameConfig.camPosition.y, 0);
-        _rightCamBound.transform.position = new Vector3(GameConfig.rightCam, GameConfig.camPosition.y, 0);
-        _deadZone.transform.position = new Vector3(GameConfig.camPosition.x, GameConfig.botCam, 0);
+        _leftCamBoundBox.size = GameConfig.WALL_SIZE;
+        _rightCamBoundBox.size = GameConfig.WALL_SIZE;
+        _deadZoneBox.size = new Vector2(GameConfig.HALF_WIDTH * 2, 0.2f);
+
+        _leftCamBound.transform.position = new Vector3(GameConfig.LEFT_CAM, GameConfig.CAM_POSITION.y, 0);
+        _rightCamBound.transform.position = new Vector3(GameConfig.RIGHT_CAM, GameConfig.CAM_POSITION.y, 0);
+        _deadZone.transform.position = new Vector3(GameConfig.CAM_POSITION.x, GameConfig.BOT_CAM, 0);
+
+        _leftCamSprite.size = _leftCamBoundBox.size;
+        _rightCamSprite.size = _rightCamBoundBox.size;
+        _rightCamSprite.flipX = true;
     }
     public void ChangeTargetTo(float y)
     {

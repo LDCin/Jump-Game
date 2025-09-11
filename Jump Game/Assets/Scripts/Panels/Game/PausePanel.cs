@@ -1,20 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PausePanel : Panel
 {
     [SerializeField] private GameObject _pauseBoard;
-    private void OnEnable()
+    [SerializeField] private GameObject _countdownBoard;
+    private Animator _animator;
+    private void Awake()
     {
-        _pauseBoard.SetActive(true);
+        _animator = GetComponent<Animator>();
     }
+    // private void OnEnable()
+    // {
+    //     _animator.SetTrigger("PopUp");
+    // }
     public void Resume()
     {
         SoundManager.Instance.PlayClickSound();
-        PanelManager.Instance.OpenPanel(GameConfig.DEFAULT_PANEL);
-        PanelManager.Instance.ClosePanel(GameConfig.PAUSE_PANEL);
-        Time.timeScale = 1;
+        // _countdownBoard.SetActive(true);
+        _animator.SetTrigger("Countdown");
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(GameConfig.GAME_SCENE);
+        Close();
     }
     public void Setting()
     {
@@ -27,8 +38,10 @@ public class PausePanel : Panel
         PanelManager.Instance.CloseAllPanel();
         PanelManager.Instance.OpenPanel(GameConfig.MENU_PANEL);
     }
-    public void CountdownToContinue()
+    public void CountDownFinish()
     {
-        
+        Close();
+        PanelManager.Instance.OpenPanel(GameConfig.DEFAULT_PANEL);
+        Time.timeScale = 1;
     }
 }

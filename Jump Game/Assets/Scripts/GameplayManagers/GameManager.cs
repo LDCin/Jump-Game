@@ -9,12 +9,15 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Player _playerPrefab;
     [SerializeField] private GameObject _playerSpawnPosition;
     [SerializeField] private GameObject _background;
+    [SerializeField] private GameObject _leftWall;
+    [SerializeField] private GameObject _rightWall;
     
     private Player _player;
     public override void Awake()
     {
         base.Awake();
-        LoadBackground();
+
+        LoadTheme();
         InitObstacleSpawner();
         Time.timeScale = 1;
         LoadPlayer();
@@ -50,15 +53,15 @@ public class GameManager : Singleton<GameManager>
         Animator animator = _player.GetComponent<Animator>();
         animator.runtimeAnimatorController = playerData.characterAnimatorController;
 
-        GameConfig.camPositionMovement = _player.transform.position.y;
+        GameConfig.CAM_POSITION_MOVEMENT = _player.transform.position.y;
     }
-
-    private void LoadBackground()
+    private void LoadTheme()
     {
         MapData mapData = GameConfig.CURRENT_MAP_DATA;
         _background.transform.GetComponent<SpriteRenderer>().sprite = mapData.backgroundImage;
+        _leftWall.transform.GetComponent<SpriteRenderer>().sprite = mapData.leftWallImage;
+        _rightWall.transform.GetComponent<SpriteRenderer>().sprite = mapData.rightWallImage;
     }
-
     public Player GetPlayer()
     {
         return _player;

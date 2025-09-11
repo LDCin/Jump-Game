@@ -14,7 +14,7 @@ public class ObstacleSpawner : MonoBehaviour
         ObstaclePool obstaclePool = Resources.Load<ObstaclePool>(GameConfig.OBSTACLE_PATH + GameConfig.OBSTACLE_POOL);
         ObstaclePool newObstaclePool = Instantiate(obstaclePool, transform);
         _obstaclePool = newObstaclePool;
-        _lastSpawnPos.y = GameConfig.topCam - _spawnDistance;
+        _lastSpawnPos.y = GameConfig.TOP_CAM - _spawnDistance;
         _lastSpawnPos.x = 0;
         _obstaclePool.ResetPool();
         
@@ -37,9 +37,9 @@ public class ObstacleSpawner : MonoBehaviour
         if (ScoreManager.Instance.GetScore() >= ScoreManager.Instance._scoreLimit) obstacle.EnableChangeType();
         obstacle.gameObject.SetActive(true);
         LoadObstacle(obstacle);
-        if (_distanceOffset == 0) _distanceOffset = obstacle.GetCollider2D().bounds.size.x / 2;
+        if (_distanceOffset == 0) _distanceOffset = obstacle.GetCollider2D().bounds.size.x;
         obstacle.gameObject.transform.position = _lastSpawnPos;
-        _lastSpawnPos = new Vector2(Random.Range(GameConfig.leftCam + _distanceOffset, GameConfig.rightCam - _distanceOffset), _lastSpawnPos.y - _spawnDistance);
+        _lastSpawnPos = new Vector2(Random.Range(GameConfig.LEFT_CAM + _distanceOffset, GameConfig.RIGHT_CAM - _distanceOffset), _lastSpawnPos.y - _spawnDistance);
     }
     
 }

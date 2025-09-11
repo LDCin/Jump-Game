@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   _isShownPerfect: 0
+  _scoreLimit: 11
 --- !u!4 &17793092
 Transform:
   m_ObjectHideFlags: 0
