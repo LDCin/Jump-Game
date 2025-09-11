@@ -115,7 +115,7 @@ public class Obstacle : MonoBehaviour
     }
     private void ChangeDirection()
     {
-        if (transform.position.x - _colSize.x / 2 <= GameConfig.LEFT_CAM + GameConfig.WALL_SIZE.x || transform.position.x + _colSize.x / 2 >= GameConfig.RIGHT_CAM - GameConfig.WALL_SIZE.x)
+        if (transform.position.x - _colSize.x / 2 <= GameConfig.LEFT_CAM + GameConfig.WALL_SIZE.x + 0.01 || transform.position.x + _colSize.x / 2 >= GameConfig.RIGHT_CAM - GameConfig.WALL_SIZE.x - 0.01)
         {
             if (_hasPlayer)
             {

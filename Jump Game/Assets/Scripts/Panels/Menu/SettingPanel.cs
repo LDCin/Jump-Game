@@ -14,8 +14,26 @@ public class SettingPanel : Panel
     public bool _isOnSFX = true;
     public void Awake()
     {
-        _BGMButtonIcon.sprite = _onIcon;
-        _SFXButtonIcon.sprite = _onIcon;
+        if (GameConfig.BGM_STATE == 1)
+        {
+            _BGMButtonIcon.sprite = _onIcon;
+            _isOnBGM = true;
+        }
+        else
+        {
+            _BGMButtonIcon.sprite = _offIcon;
+            _isOnBGM = false;
+        }
+        if (GameConfig.SFX_STATE == 1)
+        {
+            _SFXButtonIcon.sprite = _onIcon;
+            _isOnSFX = true;
+        }
+        else
+        {
+            _SFXButtonIcon.sprite = _offIcon;
+            _isOnSFX = false;
+        }
     }
     public void ChangeBGMState()
     {

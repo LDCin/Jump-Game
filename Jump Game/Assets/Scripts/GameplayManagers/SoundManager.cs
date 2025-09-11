@@ -16,14 +16,10 @@ public class SoundManager : Singleton<SoundManager>
     public override void Awake()
     {
         base.Awake();
-        // if (GameConfig.BGM_STATE == 1) PlayBGM();
-        // else StopBGM();
-        // if (GameConfig.SFX_STATE == 1) TurnOnSFX();
-        // else TurnOffSFX();
-    }
-    private void Start()
-    {
-        PlayBGM();
+        if (GameConfig.BGM_STATE == 1) PlayBGM();
+        else StopBGM();
+        if (GameConfig.SFX_STATE == 1) TurnOnSFX();
+        else TurnOffSFX();
     }
     public void PlayBGM()
     {
@@ -32,13 +28,15 @@ public class SoundManager : Singleton<SoundManager>
             Debug.Log("Not Found: BGM");
         }
         _BGM.loop = true;
-        _BGM.Play();
+        _BGM.mute = false;
         PlayerPrefs.SetInt("BGMState", 1);
+        PlayerPrefs.Save();
     }
     public void StopBGM()
     {
-        _BGM.Stop();
+        _BGM.mute = true;
         PlayerPrefs.SetInt("BGMState", 0);
+        PlayerPrefs.Save();
     }
     public void PlayClickSound()
     {
@@ -52,11 +50,13 @@ public class SoundManager : Singleton<SoundManager>
     {
         _SFX.mute = true;
         PlayerPrefs.SetInt("SFXState", 0);
+        PlayerPrefs.Save();
     }
     public void TurnOnSFX()
     {
         _SFX.mute = false;
         PlayerPrefs.SetInt("SFXState", 1);
+        PlayerPrefs.Save();
     }
     public void PlayJumpSound()
     {
