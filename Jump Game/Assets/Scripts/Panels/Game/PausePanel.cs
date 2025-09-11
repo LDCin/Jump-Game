@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PausePanel : Panel
 {
+    [SerializeField] private GameObject _pauseBoard;
+    private void OnEnable()
+    {
+        _pauseBoard.SetActive(true);
+    }
     public void Resume()
     {
         SoundManager.Instance.PlayClickSound();
@@ -21,5 +26,9 @@ public class PausePanel : Panel
         SoundManager.Instance.PlayClickSound();
         PanelManager.Instance.CloseAllPanel();
         PanelManager.Instance.OpenPanel(GameConfig.MENU_PANEL);
+    }
+    public void CountdownToContinue()
+    {
+        
     }
 }

@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag(GameConfig.OBSTACLE_TAG))
         {
             _obstacle = collision.gameObject.GetComponent<Obstacle>();
+            Debug.Log("Set player as children!");
             float playerCenterX = _col.bounds.center.x;
             float obstacleCenterX = _obstacle.GetCollider2D().bounds.center.x;
 
@@ -87,7 +88,7 @@ public class Player : MonoBehaviour
             GameManager.Instance.SpawnAfterJump();
             if (!_firstJump && _scoreToAdd > 0)
             {
-                GameManager.Instance.GainScore(_scoreToAdd / 2);
+                GameManager.Instance.GainScore(_scoreToAdd - 1);
                 _scoreToAdd = 0;
             }
             CameraController._instance.ChangeTargetTo(transform.position.y - 3.0f);
@@ -99,7 +100,7 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.GameOver();
         }
-        else if (collision.gameObject.CompareTag(GameConfig.SCORE_ZONE_TAG))
+        else if (collision.gameObject.CompareTag(GameConfig.SCORE_ZONE_TAG) && !_firstJump)
         {
             _scoreToAdd++;
         }
