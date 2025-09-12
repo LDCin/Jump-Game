@@ -115,7 +115,7 @@ public class Obstacle : MonoBehaviour
     }
     private void ChangeDirection()
     {
-        if (transform.position.x - _colSize.x / 2 <= GameConfig.LEFT_CAM + GameConfig.WALL_SIZE.x + 0.01 || transform.position.x + _colSize.x / 2 >= GameConfig.RIGHT_CAM - GameConfig.WALL_SIZE.x - 0.01)
+        if (transform.position.x - _colSize.x / 2 <= GameConfig.LEFT_CAM + GameConfig.WALL_SIZE.x + 0.09 || transform.position.x + _colSize.x / 2 >= GameConfig.RIGHT_CAM - GameConfig.WALL_SIZE.x - 0.01)
         {
             if (_hasPlayer)
             {
@@ -130,20 +130,6 @@ public class Obstacle : MonoBehaviour
             }
             _dir = new Vector2(-_dir.x, _dir.y);
         }
-        // if (_hasPlayer)
-        // {
-        //     {
-        //         _currentExistCount--;
-        //         if (_currentExistCount == 1 && _hasPlayer) SoundManager.Instance.PlayBreakSound();
-        //         _spriteRenderer.sprite = _afterBreakSprite;
-        //     }
-        //     if (_currentExistCount <= 0)
-        //     {
-        //         BreakObstacle();
-        //         return;
-        //     }
-        //     _dir = new Vector2(-_dir.x, _dir.y);
-        // }
     }
     public void SetSprite(MapData mapData)
     {

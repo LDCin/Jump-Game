@@ -477,13 +477,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpForce: 3
   _obstacle: {fileID: 0}
-  _headObject: {fileID: 4360675354166651900}
-  _bodyObject: {fileID: 2961168502731285888}
-  _leftArmObject: {fileID: 5498536031531036754}
-  _rightArmObject: {fileID: 3359598856581551730}
-  _tailObject: {fileID: 2364559655013877211}
-  _leftLegObject: {fileID: 2770283190170457886}
-  _rightLegObject: {fileID: 2934083518788742158}
+  headObject: {fileID: 4360675354166651900}
+  bodyObject: {fileID: 2961168502731285888}
+  leftArmObject: {fileID: 5498536031531036754}
+  rightArmObject: {fileID: 3359598856581551730}
+  tailObject: {fileID: 2364559655013877211}
+  leftLegObject: {fileID: 2770283190170457886}
+  rightLegObject: {fileID: 2934083518788742158}
 --- !u!212 &7056510746442220003
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -18,6 +18,8 @@ public class ScoreManager : Singleton<ScoreManager>
     {
         SetScore(_score + scoreDelta);
         PlayerPrefs.SetInt(GameConfig.SCORE, _score);
+        if (DefaultPanel.Instance != null)
+            DefaultPanel.Instance.UpdateScoreText();
     }
     public void UpdateHighScore()
     {

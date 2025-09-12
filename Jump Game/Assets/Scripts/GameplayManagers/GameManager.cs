@@ -11,23 +11,18 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject _background;
     [SerializeField] private GameObject _leftWall;
     [SerializeField] private GameObject _rightWall;
-    
-    private Player _player;
     public override void Awake()
     {
         base.Awake();
-
         LoadTheme();
         InitObstacleSpawner();
         Time.timeScale = 1;
-        LoadPlayer();
     }
     public void Start()
     {
         ScoreManager.Instance.SetScore(0);
         ScoreManager.Instance.UpdateScore(0);
         PanelManager.Instance.OpenPanel(GameConfig.DEFAULT_PANEL);
-        PanelManager.Instance.OpenPanel(GameConfig.SCORE_PANEL);
     }
     public void InitObstacleSpawner()
     {
@@ -36,24 +31,23 @@ public class GameManager : Singleton<GameManager>
         _obstacleSpawner = newObstacleSpawner;
     }
     // SET UP
-    private void LoadPlayer()
+    public void LoadPlayer(GameObject head, GameObject body, GameObject leftArm, GameObject rightArm, GameObject tail, GameObject leftLeg, GameObject rightLeg, Animator animator)
     {
         CharacterData playerData = GameConfig.CURRENT_CHARACTER_DATA;
+        Debug.Log("Load Successfully");
 
-        _player = Instantiate(_playerPrefab, _playerSpawnPosition.transform.position, Quaternion.identity);
+        head.GetComponent<SpriteRenderer>().sprite = playerData.head;
+        
+        body.GetComponent<SpriteRenderer>().sprite = playerData.body;
+        leftArm.GetComponent<SpriteRenderer>().sprite = playerData.leftArm;
+        rightArm.GetComponent<SpriteRenderer>().sprite = playerData.rightArm;
+        tail.GetComponent<SpriteRenderer>().sprite = playerData.tail;
+        leftLeg.GetComponent<SpriteRenderer>().sprite = playerData.leftLeg;
+        rightLeg.GetComponent<SpriteRenderer>().sprite = playerData.rightLeg;
 
-        _player.transform.Find("Head").GetComponent<SpriteRenderer>().sprite = playerData.head;
-        _player.transform.Find("Body").GetComponent<SpriteRenderer>().sprite = playerData.body;
-        _player.transform.Find("LeftArm").GetComponent<SpriteRenderer>().sprite = playerData.leftArm;
-        _player.transform.Find("RightArm").GetComponent<SpriteRenderer>().sprite = playerData.rightArm;
-        _player.transform.Find("Tail").GetComponent<SpriteRenderer>().sprite = playerData.tail;
-        _player.transform.Find("LeftLeg").GetComponent<SpriteRenderer>().sprite = playerData.leftLeg;
-        _player.transform.Find("RightLeg").GetComponent<SpriteRenderer>().sprite = playerData.rightLeg;
-
-        Animator animator = _player.GetComponent<Animator>();
         animator.runtimeAnimatorController = playerData.characterAnimatorController;
 
-        GameConfig.CAM_POSITION_MOVEMENT = _player.transform.position.y;
+        GameConfig.CAM_POSITION_MOVEMENT = _playerSpawnPosition.transform.position.y;
     }
     private void LoadTheme()
     {
@@ -61,10 +55,6 @@ public class GameManager : Singleton<GameManager>
         _background.transform.GetComponent<SpriteRenderer>().sprite = mapData.backgroundImage;
         _leftWall.transform.GetComponent<SpriteRenderer>().sprite = mapData.leftWallImage;
         _rightWall.transform.GetComponent<SpriteRenderer>().sprite = mapData.rightWallImage;
-    }
-    public Player GetPlayer()
-    {
-        return _player;
     }
 
     // GAMEPLAY

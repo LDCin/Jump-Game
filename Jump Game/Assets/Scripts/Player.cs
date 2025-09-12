@@ -8,13 +8,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float _jumpForce = 1.0f;
     [SerializeField] private Obstacle _obstacle;
 
-    [SerializeField] private GameObject headObject;
-    [SerializeField] private GameObject bodyObject;
-    [SerializeField] private GameObject leftArmObject;
-    [SerializeField] private GameObject rightArmObject;
-    [SerializeField] private GameObject tailObject;
-    [SerializeField] private GameObject leftLegObject;
-    [SerializeField] private GameObject rightLegObject;
+    [SerializeField] private GameObject _headObject;
+    [SerializeField] private GameObject _bodyObject;
+    [SerializeField] private GameObject _leftArmObject;
+    [SerializeField] private GameObject _rightArmObject;
+    [SerializeField] private GameObject _tailObject;
+    [SerializeField] private GameObject _leftLegObject;
+    [SerializeField] private GameObject _rightLegObject;
 
     private string _characterName;
     private Rigidbody2D _rb;
@@ -107,18 +107,7 @@ public class Player : MonoBehaviour
     }
     private void LoadCharacter()
     {
-        CharacterData player = CustomManager.Instance.GetCharacter(GameConfig.CURRENT_CHARACTER_NAME);
-        _characterName = player.characterName;
-
-        headObject.GetComponent<SpriteRenderer>().sprite = player.head;
-        bodyObject.GetComponent<SpriteRenderer>().sprite = player.body;
-        leftArmObject.GetComponent<SpriteRenderer>().sprite = player.leftArm;
-        rightArmObject.GetComponent<SpriteRenderer>().sprite = player.rightArm;
-        tailObject.GetComponent<SpriteRenderer>().sprite = player.tail;
-        leftLegObject.GetComponent<SpriteRenderer>().sprite = player.leftLeg;
-        rightLegObject.GetComponent<SpriteRenderer>().sprite = player.rightLeg;
-
-        _animator.runtimeAnimatorController = player.characterAnimatorController;
+        GameManager.Instance.LoadPlayer(_headObject, _bodyObject, _leftArmObject, _rightArmObject, _tailObject, _leftLegObject, _rightLegObject, _animator);
     }
 }
 
