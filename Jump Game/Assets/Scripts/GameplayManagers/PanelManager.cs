@@ -82,20 +82,4 @@ public class PanelManager : Singleton<PanelManager>
             panelList.Remove(namePanel);
         }
     }
-
-    
-    public bool IsPointerOverUI()
-    {
-        
-        EventSystem eventSystem = EventSystem.current;
-
-        PointerEventData eventData = new PointerEventData(eventSystem);
-        eventData.position = Input.mousePosition;
-
-        List<RaycastResult> results = new List<RaycastResult>();
-
-        eventSystem.RaycastAll(eventData, results);
-
-        return results.Count > 0;
-    }
 }

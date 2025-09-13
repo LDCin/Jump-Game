@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,11 +35,11 @@ public class GameManager : Singleton<GameManager>
     public void LoadPlayer(GameObject head, GameObject body, GameObject leftArm, GameObject rightArm, GameObject tail, GameObject leftLeg, GameObject rightLeg, Animator animator)
     {
         CharacterData playerData = GameConfig.CURRENT_CHARACTER_DATA;
-        Debug.Log("Load Successfully");
-
-        head.GetComponent<SpriteRenderer>().sprite = playerData.head;
         
+        head.GetComponent<SpriteRenderer>().sprite = playerData.head;
+
         body.GetComponent<SpriteRenderer>().sprite = playerData.body;
+        
         leftArm.GetComponent<SpriteRenderer>().sprite = playerData.leftArm;
         rightArm.GetComponent<SpriteRenderer>().sprite = playerData.rightArm;
         tail.GetComponent<SpriteRenderer>().sprite = playerData.tail;

@@ -39,17 +39,21 @@ public class Player : MonoBehaviour
         ChangeState();
         if (Input.touchCount > 0)
         {
-            if (_firstJump)
+            if (!UIHelper.Instance.IsPointerOverUI())
             {
-                _obstacle.SetFirst(false);
-                _firstJump = false;
-                return;
-            }
-            else if (!_isFalling && _obstacle != null)
-            {
-                _obstacle.DisableColliderObstacle();
-                Jump();
-                Debug.Log("Touch Screen!");
+                Debug.Log("Jump!");
+                if (_firstJump)
+                {
+                    _obstacle.SetFirst(false);
+                    _firstJump = false;
+                    return;
+                }
+                else if (!_isFalling && _obstacle != null)
+                {
+                    _obstacle.DisableColliderObstacle();
+                    Jump();
+                    Debug.Log("Touch Screen!");
+                }
             }
         }
     }
