@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -39, y: 30}
+  m_AnchoredPosition: {x: -35, y: 35}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4889716954448781259
@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2545103145601945496}
   - component: {fileID: 3958012289146517508}
+  - component: {fileID: 8532787980902763221}
   - component: {fileID: 7852732576744024356}
   - component: {fileID: 3877962165394906627}
   m_Layer: 5
@@ -198,6 +199,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9135772948055300253}
   m_CullTransparentMesh: 1
+--- !u!114 &8532787980902763221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9135772948055300253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 929edb94dd2b5fa40ad5f70c8fbfbf05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectIcon: {fileID: 7167306476366127663}
+  _icon: {fileID: 8704869992837229768}
 --- !u!114 &7852732576744024356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,4 +286,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7852732576744024356}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7353092095672506863, guid: 392fffe228718904da7c19d2e5a172e7, type: 3}
+        m_TargetAssemblyTypeName: ShopPanel, Assembly-CSharp
+        m_MethodName: OnSlotClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8532787980902763221}
+          m_ObjectArgumentAssemblyTypeName: ShopSlot, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

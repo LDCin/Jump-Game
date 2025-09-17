@@ -468,7 +468,7 @@ MonoBehaviour:
   _mapCustom: {fileID: 4307652154524841594}
   _characterScrollContent: {fileID: 308809763963600170}
   _mapScrollContent: {fileID: 8482992359491091112}
-  _slotPrefab: {fileID: 9135772948055300253, guid: ae761fc62ce6c274eb0b83be54365bc1, type: 3}
+  _slotPrefab: {fileID: 8532787980902763221, guid: ae761fc62ce6c274eb0b83be54365bc1, type: 3}
 --- !u!222 &1222038184821944750
 CanvasRenderer:
   m_ObjectHideFlags: 0

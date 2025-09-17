@@ -18,7 +18,7 @@ public class ShopPanel : Panel
     [Header("UI")]
     [SerializeField] private Transform _characterScrollContent;
     [SerializeField] private Transform _mapScrollContent;
-    [SerializeField] private GameObject _slotPrefab;
+    [SerializeField] private ShopSlot _slotPrefab;
 
     private Color activeRed = new Color(0.9f, 0.2f, 0.2f, 1f);
     private Color inactiveRed = new Color(0.5f, 0.1f, 0.1f, 1f);
@@ -27,8 +27,8 @@ public class ShopPanel : Panel
     private Animator _animator;
     private bool _isInitCharacter = false;
     private bool _isInitMap = false;
-    private List<GameObject> _characterSlots = new List<GameObject>();
-    private List<GameObject> _mapSlots = new List<GameObject>();
+    private List<ShopSlot> _characterSlots = new List<ShopSlot>();
+    private List<ShopSlot> _mapSlots = new List<ShopSlot>();
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -38,63 +38,56 @@ public class ShopPanel : Panel
         // _animator.SetTrigger("Start");
         ShowCharacterView();
     }
+    public void OnCharacterSlotClicked(ShopSlot slot)
+    {
+        Debug.Log("Click on: " + slot.GetItemName());
+        SelectCharacter(slot.GetItemName());
+    }
+
+    public void OnMapSlotClicked(ShopSlot slot)
+    {
+        Debug.Log("Click on: " + slot.GetItemName());
+        SelectMap(slot.GetItemName());
+    }
+    public void OnSlotClicked(ShopSlot slot)
+    {
+        if (slot.IsCharacter())
+        {
+            OnCharacterSlotClicked(slot);
+        }
+        else
+        {
+            OnMapSlotClicked(slot);
+        }
+    }
     private void SelectCharacter(string characterName)
     {
         CharacterData character = CustomManager.Instance.GetCharacter(characterName);
 
         foreach (var slot in _characterSlots)
         {
-            var icon = slot.transform.Find("Image - Icon")?.GetComponent<Image>();
-            if (icon != null && icon.sprite == character.icon)
-            {
-                OnCharacterSelected(character, slot);
-                break;
-            }
+            slot.SetSelect(slot.GetItemName() == character.characterName);
         }
+
+        _selectedItemImage.sprite = character.sprite;
+        _selectedItemName.text = character.characterName;
+
+        PlayerPrefs.SetString("CurrentCharacter", character.characterName);
+        PlayerPrefs.Save();
     }
+
     private void SelectMap(string mapName)
     {
         MapData map = CustomManager.Instance.GetMap(mapName);
 
         foreach (var slot in _mapSlots)
         {
-            var icon = slot.transform.Find("Image - Icon")?.GetComponent<Image>();
-            if (icon != null && icon.sprite == map.icon)
-            {
-                OnMapSelected(map, slot);
-                break;
-            }
-        }
-    }
-    private void OnCharacterSelected(CharacterData character, GameObject selectedSlot)
-    {
-        _selectedItemImage.sprite = character.sprite;
-        _selectedItemName.text = character.characterName;
-
-        foreach (var slot in _characterSlots)
-        {
-            var icon = slot.transform.Find("Image - SelectedIcon");
-            icon.gameObject.SetActive(false);
+            slot.SetSelect(slot.GetItemName() == map.mapName);
         }
 
-        var selectedIcon = selectedSlot.transform.Find("Image - SelectedIcon");
-        selectedIcon.gameObject.SetActive(true);
-        PlayerPrefs.SetString("CurrentCharacter", character.characterName);
-        PlayerPrefs.Save();
-    }
-    private void OnMapSelected(MapData map, GameObject selectedSlot)
-    {
         _selectedItemImage.sprite = map.icon;
         _selectedItemName.text = map.mapName;
 
-        foreach (var slot in _mapSlots)
-        {
-            var icon = slot.transform.Find("Image - SelectedIcon");
-            icon.gameObject.SetActive(false);
-        }
-
-        var selectedIcon = selectedSlot.transform.Find("Image - SelectedIcon");
-        selectedIcon.gameObject.SetActive(true);
         PlayerPrefs.SetString("CurrentMap", map.mapName);
         PlayerPrefs.Save();
     }
@@ -102,58 +95,19 @@ public class ShopPanel : Panel
     {
         foreach (var character in characterList)
         {
-            GameObject slot = Instantiate(_slotPrefab, _characterScrollContent);
-
-            Transform iconTransform = slot.transform.Find("Image - Icon");
-            if (iconTransform != null)
-            {
-                Debug.Log("Found Image");
-                Image iconImage = iconTransform.GetComponent<Image>();
-                if (iconImage != null)
-                    iconImage.sprite = character.icon;
-            }
-            Transform selectedIconTransform = slot.transform.Find("Image - SelectedIcon");
-            if (selectedIconTransform != null)
-            {
-                Debug.Log("Found Image");
-                selectedIconTransform.gameObject.SetActive(false);
-            }
-            
-            Button btn = slot.GetComponent<Button>();
-            if (btn != null)
-            {
-                btn.onClick.AddListener(() => OnCharacterSelected(character, slot));
-            }
+            ShopSlot slot = Instantiate(_slotPrefab, _characterScrollContent);
+            slot.SetIcon(character.icon, character.characterName, true);
+            slot.GetComponent<Button>().onClick.AddListener(() => OnSlotClicked(slot));
             _characterSlots.Add(slot);
         }
     }
-
     private void CreateMapSlots(List<MapData> mapList)
     {
         foreach (var map in mapList)
         {
-            GameObject slot = Instantiate(_slotPrefab, _mapScrollContent);
-
-            Transform iconTransform = slot.transform.Find("Image - Icon");
-            if (iconTransform != null)
-            {
-                Image iconImage = iconTransform.GetComponent<Image>();
-                if (iconImage != null)
-                    iconImage.sprite = map.icon;
-            }
-            Transform selectedIconTransform = slot.transform.Find("Image - SelectedIcon");
-            if (selectedIconTransform != null)
-            {
-                Debug.Log("Found Image");
-                selectedIconTransform.gameObject.SetActive(false);
-            }
-
-            Button btn = slot.GetComponent<Button>();
-            if (btn != null)
-            {
-                btn.onClick.AddListener(() => OnMapSelected(map, slot));
-            }
-            Debug.Log($"Creating slot for {map.name}, iconTransform: {iconTransform}");
+            ShopSlot slot = Instantiate(_slotPrefab, _mapScrollContent);
+            slot.SetIcon(map.icon, map.mapName, false);
+            slot.GetComponent<Button>().onClick.AddListener(() => OnSlotClicked(slot));
             _mapSlots.Add(slot);
         }
     }
