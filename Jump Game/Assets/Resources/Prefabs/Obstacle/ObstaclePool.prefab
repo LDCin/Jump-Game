@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obstacleList: []
   _obstaclePrefab: {fileID: 7245468242215148026, guid: 492b20a98b9f0f644a4d0347d298eed0, type: 3}
-  _poolSize: 7
+  _poolSize: 10

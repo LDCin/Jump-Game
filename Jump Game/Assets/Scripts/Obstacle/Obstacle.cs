@@ -45,8 +45,13 @@ public class Obstacle : MonoBehaviour
         PickRandomType();
         _dir = Random.Range(0, 100) < 50 ? Vector2.right : Vector2.left;
         _hasPlayer = false;
+
         _blinkTimer = 0f;
         _isVisible = true;
+        Color c = _spriteRenderer.color;
+        c.a = 1f;
+        _spriteRenderer.color = c;
+
         if (_enableFast)
         {
             _realSpeed = _moveSpeed + _extraSpeed;
@@ -66,12 +71,10 @@ public class Obstacle : MonoBehaviour
         if (_enableBlink)
         {
             _blinkTimer += Time.deltaTime;
-            if (_blinkTimer >= _blinkGap)
-            {
-                _blinkTimer = 0f;
-                _isVisible = !_isVisible;
-                _spriteRenderer.enabled = _isVisible;
-            }
+            float alpha = Mathf.PingPong(_blinkTimer, _blinkGap) / _blinkGap;
+            Color c = _spriteRenderer.color;
+            c.a = alpha;
+            _spriteRenderer.color = c;
         }
     }
     public void EnableChangeType()
@@ -115,20 +118,36 @@ public class Obstacle : MonoBehaviour
     }
     private void ChangeDirection()
     {
-        if (transform.position.x - _colSize.x / 2 <= GameConfig.LEFT_CAM + GameConfig.WALL_SIZE.x + 0.09 || transform.position.x + _colSize.x / 2 >= GameConfig.RIGHT_CAM - GameConfig.WALL_SIZE.x - 0.01)
+        float leftLimit = GameConfig.LEFT_CAM + GameConfig.WALL_SIZE.x + 0.1f;
+        float rightLimit = GameConfig.RIGHT_CAM - GameConfig.WALL_SIZE.x - 0.1f;
+
+        float halfWidth = _colSize.x / 2f;
+        float posX = transform.position.x;
+
+        if (posX - halfWidth <= leftLimit || posX + halfWidth >= rightLimit)
         {
             if (_hasPlayer)
             {
                 _currentExistCount--;
-                if (_currentExistCount == 1 && _hasPlayer) SoundManager.Instance.PlayBreakSound();
+                if (_currentExistCount == 1 && _hasPlayer)
+                    SoundManager.Instance.PlayBreakSound();
+
                 _spriteRenderer.sprite = _afterBreakSprite;
             }
+
             if (_currentExistCount <= 0)
             {
                 BreakObstacle();
                 return;
             }
+
             _dir = new Vector2(-_dir.x, _dir.y);
+
+            if (posX - halfWidth <= leftLimit)
+                posX = leftLimit + halfWidth;
+            else if (posX + halfWidth >= rightLimit)
+                posX = rightLimit - halfWidth;
+            transform.position = new Vector3(posX, transform.position.y, transform.position.z);
         }
     }
     public void SetSprite(MapData mapData)

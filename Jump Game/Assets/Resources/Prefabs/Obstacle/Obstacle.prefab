@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _existCount: 2
-  _moveSpeed: 2
+  _moveSpeed: 2.5
   _realSpeed: 1
   _enableBlink: 0
   _blinkGap: 0.5
@@ -259,7 +259,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5681323874943433996}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

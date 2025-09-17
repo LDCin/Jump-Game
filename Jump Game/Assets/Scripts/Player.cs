@@ -31,8 +31,10 @@ public class Player : MonoBehaviour
         _col = GetComponent<Collider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        LoadCharacter();
         GameConfig.CAM_POSITION_MOVEMENT = transform.position.y;
+    }
+    private void Start(){
+        LoadCharacter();
     }
     private void Update()
     {

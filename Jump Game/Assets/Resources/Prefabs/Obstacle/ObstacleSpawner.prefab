@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd35fbb41ab38414ea84599909bf9174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 1
   _obstaclePool: {fileID: 3180581882682775370, guid: 7606bed5b60521f4ba12da80c709752c, type: 3}
-  _existNumber: 5
+  _existNumber: 7
   _spawnDistance: 3
