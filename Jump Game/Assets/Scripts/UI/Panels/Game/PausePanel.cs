@@ -12,15 +12,26 @@ public class PausePanel : Panel
     {
         _animator = GetComponent<Animator>();
     }
-    // private void OnEnable()
-    // {
-    //     _animator.SetTrigger("PopUp");
-    // }
+    IEnumerator CountdownCoroutine()
+    {
+        _animator.SetTrigger("Countdown");
+        yield return new WaitForSecondsRealtime(3.5f);
+        PanelManager.Instance.OpenPanel(GameConfig.DEFAULT_PANEL);
+        Time.timeScale = 1;
+        Close();
+    }
+    public void ShowCountdownBoard()
+    {
+        _countdownBoard.SetActive(true);
+    }
+    public void HideCountdownBoard()
+    {
+        _countdownBoard.SetActive(false);
+    }
     public void Resume()
     {
         SoundManager.Instance.PlayClickSound();
-        // _countdownBoard.SetActive(true);
-        _animator.SetTrigger("Countdown");
+        StartCoroutine(CountdownCoroutine());
     }
     public void Restart()
     {
@@ -37,11 +48,5 @@ public class PausePanel : Panel
         SoundManager.Instance.PlayClickSound();
         PanelManager.Instance.CloseAllPanel();
         PanelManager.Instance.OpenPanel(GameConfig.MENU_PANEL);
-    }
-    public void CountDownFinish()
-    {
-        Close();
-        PanelManager.Instance.OpenPanel(GameConfig.DEFAULT_PANEL);
-        Time.timeScale = 1;
     }
 }
