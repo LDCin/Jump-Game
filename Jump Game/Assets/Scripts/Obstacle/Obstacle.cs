@@ -25,7 +25,6 @@ public class Obstacle : MonoBehaviour
 
     // BLINK
     private float _blinkTimer = 0f;
-    private bool _isVisible = true;
 
     private void Awake()
     {
@@ -47,7 +46,6 @@ public class Obstacle : MonoBehaviour
         _hasPlayer = false;
 
         _blinkTimer = 0f;
-        _isVisible = true;
         Color c = _spriteRenderer.color;
         c.a = 1f;
         _spriteRenderer.color = c;

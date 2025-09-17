@@ -9,26 +9,25 @@ public class DefaultPanel : Panel
     public static DefaultPanel Instance;
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private Image _perfectEffect;
-    [SerializeField] private float _timeExist;
-    private float _currentTimeExist = 2;
+    [SerializeField] public float _perfectExistTime;
     private void Awake()
     {
         Instance = this;
     }
-    public void Update()
-    {
-        if (ScoreManager.Instance._isShownPerfect)
-        {
-            Debug.Log("TIME " + _currentTimeExist);
-            ShowPerfectEffect();
-            _currentTimeExist += Time.deltaTime;
-        }
-        if (_currentTimeExist >= _timeExist)
-        {
-            Debug.Log("TIME2 " + _currentTimeExist);
-            HidePerfectEffect();
-        }
-    }
+    // public void Update()
+    // {
+    //     // if (ScoreManager.Instance._isShownPerfect)
+    //     // {
+    //     //     Debug.Log("TIME " + _currentTimeExist);
+    //     //     ShowPerfectEffect();
+    //     //     _currentTimeExist += Time.deltaTime;
+    //     // }
+    //     // if (_currentTimeExist >= _timeExist)
+    //     // {
+    //     //     Debug.Log("TIME2 " + _currentTimeExist);
+    //     //     HidePerfectEffect();
+    //     // }
+    // }
     public void UpdateScoreText()
     {
         _scoreText.text = GameConfig.GET_SCORE.ToString();
@@ -45,7 +44,6 @@ public class DefaultPanel : Panel
     {
         _perfectEffect.gameObject.SetActive(false);
         ScoreManager.Instance._isShownPerfect = false;
-        _currentTimeExist = 0;
     }
     public void PauseGame()
     {

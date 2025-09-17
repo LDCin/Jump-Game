@@ -35,11 +35,11 @@ public class GameManager : Singleton<GameManager>
     public void LoadPlayer(GameObject head, GameObject body, GameObject leftArm, GameObject rightArm, GameObject tail, GameObject leftLeg, GameObject rightLeg, Animator animator)
     {
         CharacterData playerData = GameConfig.CURRENT_CHARACTER_DATA;
-        
+
         head.GetComponent<SpriteRenderer>().sprite = playerData.head;
 
         body.GetComponent<SpriteRenderer>().sprite = playerData.body;
-        
+
         leftArm.GetComponent<SpriteRenderer>().sprite = playerData.leftArm;
         rightArm.GetComponent<SpriteRenderer>().sprite = playerData.rightArm;
         tail.GetComponent<SpriteRenderer>().sprite = playerData.tail;
@@ -63,9 +63,15 @@ public class GameManager : Singleton<GameManager>
     {
         _obstacleSpawner.SpawnObstacle();
     }
+    IEnumerator PerfectEffectCoroutine()
+    {
+        DefaultPanel.Instance.ShowPerfectEffect();
+        yield return new WaitForSeconds(DefaultPanel.Instance._perfectExistTime);
+        DefaultPanel.Instance.HidePerfectEffect();
+    }
     public void JumpPerfectly()
     {
-        ScoreManager.Instance._isShownPerfect = true;
+        StartCoroutine(PerfectEffectCoroutine());
     }
     public void GainScore(int scoreDelta)
     {

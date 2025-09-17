@@ -22,18 +22,20 @@ public class Player : MonoBehaviour
     private bool _firstJump = true;
     private int _scoreToAdd = 0;
 
-    private Collider2D _col;
+    private BoxCollider2D _col;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _col = GetComponent<Collider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _col = GetComponent<BoxCollider2D>();
+        // _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         GameConfig.CAM_POSITION_MOVEMENT = transform.position.y;
     }
-    private void Start(){
+    private void Start()
+    {
         LoadCharacter();
     }
     private void Update()
@@ -84,7 +86,7 @@ public class Player : MonoBehaviour
             float playerCenterX = _col.bounds.center.x;
             float obstacleCenterX = _obstacle.GetCollider2D().bounds.center.x;
 
-            if (Mathf.Abs(playerCenterX - obstacleCenterX) <= 0.05f && !_firstJump)
+            if (Mathf.Abs(playerCenterX - obstacleCenterX) <= 0.1f && !_firstJump)
             {
                 Debug.Log("PERFECT");
                 GameManager.Instance.JumpPerfectly();

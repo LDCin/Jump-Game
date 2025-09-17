@@ -22,4 +22,4 @@ MonoBehaviour:
   leftLeg: {fileID: 2004496297, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
   rightLeg: {fileID: -2139921090, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
   tail: {fileID: 966718248, guid: f7f4f9a52b232d443ad156cabbdd53f7, type: 3}
-  characterAnimatorController: {fileID: 9100000, guid: 1ca0595925459de40afcbb9d574accfa, type: 2}
+  characterAnimatorController: {fileID: 9100000, guid: feb36da8e954a4f4f9a00e63b31efa31, type: 2}

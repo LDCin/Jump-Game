@@ -56,7 +56,7 @@ MonoBehaviour:
   destroyOnClose: 0
   _scoreText: {fileID: 217002950178603352}
   _perfectEffect: {fileID: 3485832712673436680}
-  _timeExist: 1
+  _perfectExistTime: 2
 --- !u!222 &4858878173725562346
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -423,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
