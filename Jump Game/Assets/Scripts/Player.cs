@@ -38,12 +38,17 @@ public class Player : MonoBehaviour
     {
         LoadCharacter();
     }
+    private bool isClickUI = false;
     private void Update()
     {
         ChangeState();
-        if (Input.touchCount > 0)
+        // if (Input.touchCount == 1)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (!UIHelper.Instance.IsPointerOverUI())
+
+            if (UIHelper.Instance.IsPointerOverUI()) return;
+
+            if (true)
             {
                 Debug.Log("Jump!");
                 if (_firstJump)
@@ -119,3 +124,7 @@ public class Player : MonoBehaviour
     }
 }
 
+// Coroutine chạy ở luồng nào? => Luồng main thread (cùng luồng với Update)
+// Coroutine chạy như thế nào? Khi nào dùng?
+// - dùng bằng yield return...
+// - dùng khi muốn kiểm soát Update một cái gì đấy

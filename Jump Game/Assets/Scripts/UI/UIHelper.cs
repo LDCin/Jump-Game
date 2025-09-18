@@ -11,9 +11,9 @@ public class UIHelper : MonoBehaviour
     {
         Instance = this;
     }
-    public bool IsPointerOverUI()
-    {
 
+    public bool IsPointerOverUI() // chi ho tro co raycast vao diem nao tren man hinh hay khong thoi.
+    {
         EventSystem eventSystem = EventSystem.current;
 
         PointerEventData eventData = new PointerEventData(eventSystem);
@@ -23,6 +23,7 @@ public class UIHelper : MonoBehaviour
 
         eventSystem.RaycastAll(eventData, results);
 
+        if (results.Count > 0) Debug.Log("True");
         return results.Count > 0;
     }
 }
